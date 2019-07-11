@@ -8,13 +8,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+fileprivate let reuseIdentifier = "eventCard"
 
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+   
+
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? EventCardItem else {
+            fatalError()
+        }
+        return cell
+    }
 
 }
 
