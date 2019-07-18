@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var viewCardTwo: UIView!
     @IBOutlet weak var viewCardThree: UIView!
     @IBOutlet weak var viewCardFour: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
     
       override func viewDidLoad() {
        
@@ -27,6 +28,14 @@ class ViewController: UIViewController {
         startGameRound()
         initCardsForGameRound()
     }
+    
+    
+    @IBAction func moveCardAction(_ sender: UITapGestureRecognizer) {
+        guard sender.view != nil else { return }
+        
+        print(sender.view!.tag)
+    }
+    
     
     func startGameRound() {
         
@@ -59,18 +68,15 @@ class ViewController: UIViewController {
         
         for cardo in GameRoundCards.allCases {
             switch cardo {
-                case .cardoOne:
-                    let labelText = drawTextLabel(labeltext: "Cardo one")
-                    viewCardOne.addSubview(labelText)
-                
-                case .cardoTwo:
-                    viewCardTwo.addSubview(drawTextLabel(labeltext: "Card Two"))
-                
-                case .cardoThree:
-                    viewCardThree.addSubview(drawTextLabel(labeltext: "Card Three"))
-                
-                case .cardoFour:
-                    viewCardFour.addSubview(drawTextLabel(labeltext: "Card Four"))
+            case .cardoOne:
+                let labelText = drawTextLabel(labeltext: "Cardo one")
+                viewCardOne.addSubview(labelText)
+            case .cardoTwo:
+                viewCardTwo.addSubview(drawTextLabel(labeltext: "Card Two"))
+            case .cardoThree:
+                viewCardThree.addSubview(drawTextLabel(labeltext: "Card Three"))
+            case .cardoFour:
+                viewCardFour.addSubview(drawTextLabel(labeltext: "Card Four"))
             }
         }
     
