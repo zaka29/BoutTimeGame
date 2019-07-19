@@ -12,6 +12,7 @@ import UIKit
 class ViewController: UIViewController {
    
     var historicalFacts: [HistoryIvent]? = []
+    var gameRound: BoutTimeGameRound?
     
     @IBOutlet weak var viewCardOne: UIView!
     @IBOutlet weak var viewCardTwo: UIView!
@@ -36,7 +37,6 @@ class ViewController: UIViewController {
         print(sender.view!.tag)
     }
     
-    
     func startGameRound() {
         
         do {
@@ -46,13 +46,17 @@ class ViewController: UIViewController {
             fatalError("\(error)")
         }
         
-        // Fore debugging  purposes
-        
         if let facts = historicalFacts {
-            for fact in facts {
-                print(fact.title)
-            }
+            self.gameRound = BoutTimeGameRound(cardFacts: facts)
+            self.gameRound?.startTimer(label: timerLabel)
         }
+        
+        // Fore debugging  purposes
+//        if let facts = historicalFacts {
+//            for fact in facts {
+//                print(fact.title)
+//            }
+//        }
     }
     
     func drawTextLabel(labeltext text: String?) -> UILabel {
@@ -79,7 +83,7 @@ class ViewController: UIViewController {
                 viewCardFour.addSubview(drawTextLabel(labeltext: "Card Four"))
             }
         }
-    
+        
     }
 
 }

@@ -20,9 +20,9 @@ protocol GameRound {
     var cardsCorrectOrder: [HistoryIvent] {get set}
     var cardItems: [BoutTimeCard] {get set}
     
-    func startTimer()
-    func initCorrectOrder()
-    func checkOreder()
+    func startTimer(label: UILabel)
+    func checkOreder(correctEventsOrder eventsOrder: [HistoryIvent], currentSetting cardSetting: [GameRoundCards: HistoryIvent]) -> Bool
+    func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards)
 }
 
 protocol BoutTimeCard {
@@ -33,7 +33,7 @@ protocol BoutTimeCard {
     func setUpdateEvent(event historyEvent: HistoryIvent)
 }
 
-enum GameRoundCards: Int, CaseIterable {
+enum GameRoundCards: String, CaseIterable {
     case cardoOne
     case cardoTwo
     case cardoThree
@@ -97,11 +97,11 @@ class BoutGameCardsAdaptor {
 
 struct RandomFactsGenerator {
     var howManyFacts: Int
-    var factsCollection: [Any]
+    var factsCollection: [HistoryIvent]
     
     
-    mutating func generate() -> [Any] {
-        var outputCollection: [Any] = []
+    mutating func generate() -> [HistoryIvent] {
+        var outputCollection: [HistoryIvent] = []
         for _ in 1...howManyFacts {
             let randomIndex = GKRandomSource.sharedRandom().nextInt(upperBound: factsCollection.count)
             outputCollection.append(factsCollection[randomIndex])
@@ -133,26 +133,25 @@ class BoutTimeCardItem: BoutTimeCard {
 
 class BoutTimeGameRound: GameRound {
     var cardsCorrectOrder: [HistoryIvent]
-    var cardItems: [BoutTimeCard]
-    var cardsSetting: [GameRoundCards : HistoryIvent]
+    var cardItems: [BoutTimeCard] = []
+    var cardsSetting: [GameRoundCards : HistoryIvent] = [:]
     
     init(cardFacts facts: [HistoryIvent]) {
         var factGenerator = RandomFactsGenerator(howManyFacts: 4, factsCollection: facts)
         let randomFacts = factGenerator.generate()
         
         for (index, fact) in randomFacts.enumerated() {
-            if let historyFact = fact as? HistoryIvent {
-                let boutTimeCardItem = BoutTimeCardItem(forFact: historyFact, position: index)
-                self.cardItems.append(boutTimeCardItem)
-            }
+            let boutTimeCardItem = BoutTimeCardItem(forFact: fact, position: index)
+            self.cardItems.append(boutTimeCardItem)
         }
         
-        self.cardsCorrectOrder = BoutTimeGameRound.calculateCorrectOrder(ofFacts: facts)
-        
-        for (index, event) in cardsCorrectOrder.enumerated() {
+        // Init current cards order positions based on random facts selection
+        for (index, event) in randomFacts.enumerated() {
             cardsSetting.updateValue(event, forKey: GameRoundCards.allCases[index])
         }
-
+        
+        // Here we set correct card items order e.g.correct answer
+        self.cardsCorrectOrder = BoutTimeGameRound.calculateCorrectOrder(ofFacts: randomFacts)
     }
     
     static func calculateCorrectOrder(ofFacts facts: [HistoryIvent]) -> [HistoryIvent] {
@@ -161,7 +160,7 @@ class BoutTimeGameRound: GameRound {
     
     func startTimer(label: UILabel) {
         var secondsCount: Int = 30
-        var timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             
             secondsCount -= 1
             let time = TimeInterval(secondsCount)
@@ -170,7 +169,7 @@ class BoutTimeGameRound: GameRound {
             label.text = "\(String(format:"%02i", seconds))"
             
             if secondsCount < 10 {
-                label.textColor = UIColor.init(named: "red")
+                label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
             }
         
             if secondsCount == 0 {
@@ -179,12 +178,24 @@ class BoutTimeGameRound: GameRound {
         }
     }
     
-    func initCorrectOrder() {
-        <#code#>
+    func checkOreder(correctEventsOrder eventsOrder: [HistoryIvent], currentSetting cardSetting: [GameRoundCards: HistoryIvent]) -> Bool {
+        var itemsMatched: [Int] = []
+        
+        for (index, event) in eventsOrder.enumerated() {
+            if event.title == cardSetting[GameRoundCards.allCases[index]]?.title {
+                itemsMatched.append(index)
+            }
+        }
+        
+        if itemsMatched.count == eventsOrder.count {
+            return true
+        }
+        
+        return false
     }
     
-    func checkOreder() {
-        <#code#>
+    func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards) {
+        self.cardsSetting.updateValue(event, forKey: card)
     }
 }
 
