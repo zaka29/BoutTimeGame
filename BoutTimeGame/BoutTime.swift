@@ -20,7 +20,8 @@ protocol GameRound {
     var cardsCorrectOrder: [HistoryIvent] {get set}
     var cardItems: [BoutTimeCard] {get set}
     
-    func startTimer(label: UILabel)
+    func startGameTimer(label: UILabel, footerContainer container: UIView)
+    func handleGameTimerUp(gameResult result: Bool, footerContainer container: UIView)
     func checkOreder(correctEventsOrder eventsOrder: [HistoryIvent], currentSetting cardSetting: [GameRoundCards: HistoryIvent]) -> Bool
     func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards)
 }
@@ -43,6 +44,45 @@ enum GameRoundCards: String, CaseIterable {
 enum HistoryError: Error {
     case invalidResource
     case conversionFailure
+}
+
+// Not used, remove when finsished
+enum FooterBarState: String {
+    case timerIsOn
+    case gameRoundFail
+    case gameRoundwin
+}
+
+struct FooterBarHandler {
+    var failedView: UIView
+    var winView: UIView
+    var timerView: UIView
+    
+    func renderFooterBarState(barState state: FooterBarState) -> String {
+        switch state {
+        case .timerIsOn: return "timer"
+        case .gameRoundFail: return "fail"
+        case .gameRoundwin: return "win"
+    
+        }
+    }
+}
+
+struct NextRoundButton {
+    var buttonColor: UIColor
+    var buttonLabel: UILabel
+    var buttonRadius: CGFloat
+    var buttonFrame: CGRect
+    
+    func create() -> UIView {
+        let buttonView = UIView(frame: buttonFrame)
+        
+        buttonView.backgroundColor = buttonColor
+        buttonView.layer.cornerRadius = buttonRadius
+        buttonView.addSubview(buttonLabel)
+        
+        return buttonView
+    }
 }
 
 struct ArtMovement: HistoryIvent  {
@@ -73,12 +113,15 @@ class BoutGameCardsAdaptor {
         do {
             let dictionary = try PlistConverter.dictionary(fromFile: "HistoryFacts", ofType: "plist")
             let formatter = DateFormatter()
+            formatter.dateStyle = .long
+            formatter.timeStyle = .long
+            
             var cards: [HistoryIvent] = []
             
             for eventItem in dictionary {
                 if let item = eventItem.value as? [String: Any], let itemDescription = item["description"] as? String, let itemDate = item["eventDate"] as? Date, let itemName = item["eventName"] as? String {
-                    
                     let eventDateString = formatter.string(from: itemDate)
+                    
                     let movementItem = ArtMovement(title: itemName, description: itemDescription, eventDate: eventDateString)
             
                     cards.append(movementItem)
@@ -98,7 +141,6 @@ class BoutGameCardsAdaptor {
 struct RandomFactsGenerator {
     var howManyFacts: Int
     var factsCollection: [HistoryIvent]
-    
     
     mutating func generate() -> [HistoryIvent] {
         var outputCollection: [HistoryIvent] = []
@@ -140,6 +182,7 @@ class BoutTimeGameRound: GameRound {
         var factGenerator = RandomFactsGenerator(howManyFacts: 4, factsCollection: facts)
         let randomFacts = factGenerator.generate()
         
+        
         for (index, fact) in randomFacts.enumerated() {
             let boutTimeCardItem = BoutTimeCardItem(forFact: fact, position: index)
             self.cardItems.append(boutTimeCardItem)
@@ -152,14 +195,17 @@ class BoutTimeGameRound: GameRound {
         
         // Here we set correct card items order e.g.correct answer
         self.cardsCorrectOrder = BoutTimeGameRound.calculateCorrectOrder(ofFacts: randomFacts)
+        
     }
     
     static func calculateCorrectOrder(ofFacts facts: [HistoryIvent]) -> [HistoryIvent] {
         return facts.sorted(by: {$0.eventDate.compare($1.eventDate) == .orderedDescending})
     }
     
-    func startTimer(label: UILabel) {
+    func startGameTimer(label: UILabel, footerContainer container: UIView) {
         var secondsCount: Int = 30
+        label.isHidden = false
+        
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             
             secondsCount -= 1
@@ -174,6 +220,22 @@ class BoutTimeGameRound: GameRound {
         
             if secondsCount == 0 {
                 timer.invalidate()
+                label.isHidden = true
+                if self.checkOreder(correctEventsOrder: self.cardsCorrectOrder, currentSetting: self.cardsSetting) {
+                    print("all correct.. 👏🏻")
+                    self.handleGameTimerUp(gameResult: true, footerContainer: container)
+                    for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
+                        print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
+                    }
+                    
+                } else {
+                    print("sorry you lost.. try again 👾")
+                    self.handleGameTimerUp(gameResult: false, footerContainer: container)
+                    for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
+                        print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
+                    }
+                    
+                }
             }
         }
     }
@@ -196,6 +258,29 @@ class BoutTimeGameRound: GameRound {
     
     func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards) {
         self.cardsSetting.updateValue(event, forKey: card)
+    }
+    
+    func handleGameTimerUp(gameResult result: Bool, footerContainer container: UIView) {
+        // Create correct result View;
+        let colorCorrect = #colorLiteral(red: 0.3568627451, green: 0.8470588235, blue: 0, alpha: 1)
+        let colorFail = #colorLiteral(red: 0.7843137255, green: 0, blue: 0.09411764706, alpha: 1)
+        let textLableRect = CGRect(x: 10, y: 10, width: 200, height: 25)
+        let buttonRect = CGRect(x: 10, y: 10, width: 100, height: 27)
+        let buttonRadiusFloat = CGFloat(25.0)
+        let buttonTextLabel = UILabel(frame: textLableRect)
+        buttonTextLabel.text = "Next round"
+        buttonTextLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        if(result) {
+            let nextRoundButtonCorrect = NextRoundButton(buttonColor: colorCorrect, buttonLabel: buttonTextLabel, buttonRadius: buttonRadiusFloat, buttonFrame: buttonRect)
+            container.addSubview(nextRoundButtonCorrect.create())
+            
+        } else {
+            let nextRoundButtonFail = NextRoundButton(buttonColor: colorFail, buttonLabel: buttonTextLabel, buttonRadius: buttonRadiusFloat, buttonFrame: buttonRect)
+            container.addSubview(nextRoundButtonFail.create())
+            
+        }
+        
     }
 }
 

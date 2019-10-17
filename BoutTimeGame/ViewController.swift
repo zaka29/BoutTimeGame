@@ -18,16 +18,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var viewCardTwo: UIView!
     @IBOutlet weak var viewCardThree: UIView!
     @IBOutlet weak var viewCardFour: UIView!
+    @IBOutlet weak var viewFooter: UIView!
     @IBOutlet weak var timerLabel: UILabel!
-    
-      override func viewDidLoad() {
+
+    override func viewDidLoad() {
        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         // Starting  the game
         startGameRound()
-        initCardsForGameRound()
+        drawBoutGameScreen()
     }
     
     
@@ -35,6 +35,92 @@ class ViewController: UIViewController {
         guard sender.view != nil else { return }
         
         print(sender.view!.tag)
+        
+        switch sender.view!.tag {
+        case 1:
+            if let factIn = self.gameRound?.cardsSetting[.cardoTwo], let factOut = self.gameRound?.cardsSetting[.cardoOne] {
+                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoOne)
+                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoTwo)
+                
+                let factInText = factIn.title
+                let factOutText = factOut.title
+                
+                updateCardlabelText(forCardView: viewCardOne, labelText: factInText)
+                updateCardlabelText(forCardView: viewCardTwo, labelText: factOutText)
+                
+            }
+            
+        case 2:
+            if let factIn = self.gameRound?.cardsSetting[.cardoOne], let factOut = self.gameRound?.cardsSetting[.cardoTwo] {
+                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoTwo)
+                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoOne)
+                
+                let factInText = factIn.title
+                let factOutText = factOut.title
+                
+                updateCardlabelText(forCardView: viewCardTwo, labelText: factInText)
+                updateCardlabelText(forCardView: viewCardOne, labelText: factOutText)
+            }
+            
+        case 3:
+            if let factIn = self.gameRound?.cardsSetting[.cardoThree], let factOut = self.gameRound?.cardsSetting[.cardoTwo] {
+                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoTwo)
+                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoThree)
+                
+                let factInText = factIn.title
+                let factOutText = factOut.title
+                
+                updateCardlabelText(forCardView: viewCardTwo, labelText: factInText)
+                updateCardlabelText(forCardView: viewCardThree, labelText: factOutText)
+            }
+            
+        case 4:
+            if let factIn = self.gameRound?.cardsSetting[.cardoTwo], let factOut = self.gameRound?.cardsSetting[.cardoThree] {
+                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoThree)
+                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoTwo)
+                
+                let factInText = factIn.title
+                let factOutText = factOut.title
+                
+                updateCardlabelText(forCardView: viewCardThree, labelText: factInText)
+                updateCardlabelText(forCardView: viewCardTwo, labelText: factOutText)
+            }
+            
+        
+        case 5:
+            if let factIn = self.gameRound?.cardsSetting[.cardoFour], let factOut = self.gameRound?.cardsSetting[.cardoThree] {
+                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoThree)
+                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoFour)
+                
+                let factInText = factIn.title
+                let factOutText = factOut.title
+                
+                updateCardlabelText(forCardView: viewCardThree, labelText: factInText)
+                updateCardlabelText(forCardView: viewCardFour, labelText: factOutText)
+            }
+            
+        case 6:
+            if let factIn = self.gameRound?.cardsSetting[.cardoThree], let factOut = self.gameRound?.cardsSetting[.cardoFour] {
+                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoFour)
+                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoThree)
+                
+                let factInText = factIn.title
+                let factOutText = factOut.title
+                
+                updateCardlabelText(forCardView: viewCardFour, labelText: factInText)
+                updateCardlabelText(forCardView: viewCardThree, labelText: factOutText)
+            }
+            
+        default:
+            print("Something went wrong")
+        }
+        
+        if let setting = self.gameRound?.cardsSetting {
+            for (key, value) in setting {
+                print("key == \(key) \n")
+                print("value == \(value)")
+            }
+        }
     }
     
     func startGameRound() {
@@ -48,10 +134,12 @@ class ViewController: UIViewController {
         
         if let facts = historicalFacts {
             self.gameRound = BoutTimeGameRound(cardFacts: facts)
-            self.gameRound?.startTimer(label: timerLabel)
+            // Pass in parent footer View container
+            // in oreder upate footer content dynamically
+            self.gameRound?.startGameTimer(label: timerLabel, footerContainer: viewFooter)
         }
         
-        // Fore debugging  purposes
+        // For debugging  purposes
 //        if let facts = historicalFacts {
 //            for fact in facts {
 //                print(fact.title)
@@ -68,22 +156,38 @@ class ViewController: UIViewController {
         return textLabel
     }
     
-    func initCardsForGameRound() {
+    func drawBoutGameScreen() {
         
         for cardo in GameRoundCards.allCases {
             switch cardo {
             case .cardoOne:
-                let labelText = drawTextLabel(labeltext: "Cardo one")
+                let labelTtitle = self.gameRound?.cardsSetting[.cardoOne]?.title
+                let labelText = drawTextLabel(labeltext: labelTtitle)
                 viewCardOne.addSubview(labelText)
+                
             case .cardoTwo:
-                viewCardTwo.addSubview(drawTextLabel(labeltext: "Card Two"))
+                let labelTtitle = self.gameRound?.cardsSetting[.cardoTwo]?.title
+                viewCardTwo.addSubview(drawTextLabel(labeltext: labelTtitle))
+                
             case .cardoThree:
-                viewCardThree.addSubview(drawTextLabel(labeltext: "Card Three"))
+                let labelTtitle = self.gameRound?.cardsSetting[.cardoThree]?.title
+                viewCardThree.addSubview(drawTextLabel(labeltext: labelTtitle))
+                
             case .cardoFour:
-                viewCardFour.addSubview(drawTextLabel(labeltext: "Card Four"))
+                let labelTtitle = self.gameRound?.cardsSetting[.cardoFour]?.title
+                viewCardFour.addSubview(drawTextLabel(labeltext: labelTtitle))
             }
         }
         
+    }
+    
+    func updateCardlabelText(forCardView view: UIView, labelText text: String){
+        
+        for subview in view.subviews {
+            if let label = subview as? UILabel {
+                label.text = text
+            }
+        }
     }
 
 }
