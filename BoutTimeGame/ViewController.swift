@@ -20,9 +20,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var viewCardFour: UIView!
     @IBOutlet weak var viewFooter: UIView!
     @IBOutlet weak var timerLabel: UILabel!
-
+    @IBOutlet weak var imageViewNextRoundSuccess: UIImageView!
+    @IBOutlet weak var imageViewNextRoundFail: UIImageView!
+    
     override func viewDidLoad() {
-       
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Starting  the game
@@ -124,6 +125,8 @@ class ViewController: UIViewController {
     }
     
     func startGameRound() {
+        imageViewNextRoundSuccess.isHidden = true
+        imageViewNextRoundFail.isHidden = true
         
         do {
             let cardsDataDictionary = try PlistConverter.dictionary(fromFile: "HistoryFacts", ofType: "plist")
@@ -134,17 +137,17 @@ class ViewController: UIViewController {
         
         if let facts = historicalFacts {
             self.gameRound = BoutTimeGameRound(cardFacts: facts)
-            // Pass in parent footer View container
-            // in oreder upate footer content dynamically
-            self.gameRound?.startGameTimer(label: timerLabel, footerContainer: viewFooter)
+            // Pass the next round buttons views here
+            self.gameRound?.startGameTimer(label: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
         }
         
         // For debugging  purposes
-//        if let facts = historicalFacts {
-//            for fact in facts {
-//                print(fact.title)
-//            }
-//        }
+        if let facts = historicalFacts {
+            print("Facts length \(facts.count)")
+            for fact in facts {
+                print(fact.title)
+            }
+        }
     }
     
     func drawTextLabel(labeltext text: String?) -> UILabel {
@@ -189,6 +192,14 @@ class ViewController: UIViewController {
             }
         }
     }
-
+  
+    @IBAction func nextRound(_ sender: UITapGestureRecognizer) {
+        guard sender.view != nil else { return }
+        
+        print("Next round tapped")
+        
+        startGameRound()
+        drawBoutGameScreen()
+    }
 }
 

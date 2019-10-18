@@ -20,8 +20,7 @@ protocol GameRound {
     var cardsCorrectOrder: [HistoryIvent] {get set}
     var cardItems: [BoutTimeCard] {get set}
     
-    func startGameTimer(label: UILabel, footerContainer container: UIView)
-    func handleGameTimerUp(gameResult result: Bool, footerContainer container: UIView)
+    func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView)
     func checkOreder(correctEventsOrder eventsOrder: [HistoryIvent], currentSetting cardSetting: [GameRoundCards: HistoryIvent]) -> Bool
     func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards)
 }
@@ -80,6 +79,7 @@ struct NextRoundButton {
         buttonView.backgroundColor = buttonColor
         buttonView.layer.cornerRadius = buttonRadius
         buttonView.addSubview(buttonLabel)
+        
         
         return buttonView
     }
@@ -196,13 +196,15 @@ class BoutTimeGameRound: GameRound {
         // Here we set correct card items order e.g.correct answer
         self.cardsCorrectOrder = BoutTimeGameRound.calculateCorrectOrder(ofFacts: randomFacts)
         
+        print("GameRound creator CardItems length - \(cardItems.count)")
+        
     }
     
     static func calculateCorrectOrder(ofFacts facts: [HistoryIvent]) -> [HistoryIvent] {
         return facts.sorted(by: {$0.eventDate.compare($1.eventDate) == .orderedDescending})
     }
     
-    func startGameTimer(label: UILabel, footerContainer container: UIView) {
+    func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
         var secondsCount: Int = 30
         label.isHidden = false
         
@@ -223,14 +225,14 @@ class BoutTimeGameRound: GameRound {
                 label.isHidden = true
                 if self.checkOreder(correctEventsOrder: self.cardsCorrectOrder, currentSetting: self.cardsSetting) {
                     print("all correct.. 👏🏻")
-                    self.handleGameTimerUp(gameResult: true, footerContainer: container)
+                    viewSuccess.isHidden = false
                     for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
                         print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
                     }
                     
                 } else {
                     print("sorry you lost.. try again 👾")
-                    self.handleGameTimerUp(gameResult: false, footerContainer: container)
+                    viewFail.isHidden = false
                     for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
                         print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
                     }
@@ -258,29 +260,6 @@ class BoutTimeGameRound: GameRound {
     
     func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards) {
         self.cardsSetting.updateValue(event, forKey: card)
-    }
-    
-    func handleGameTimerUp(gameResult result: Bool, footerContainer container: UIView) {
-        // Create correct result View;
-        let colorCorrect = #colorLiteral(red: 0.3568627451, green: 0.8470588235, blue: 0, alpha: 1)
-        let colorFail = #colorLiteral(red: 0.7843137255, green: 0, blue: 0.09411764706, alpha: 1)
-        let textLableRect = CGRect(x: 10, y: 10, width: 200, height: 25)
-        let buttonRect = CGRect(x: 10, y: 10, width: 100, height: 27)
-        let buttonRadiusFloat = CGFloat(25.0)
-        let buttonTextLabel = UILabel(frame: textLableRect)
-        buttonTextLabel.text = "Next round"
-        buttonTextLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        if(result) {
-            let nextRoundButtonCorrect = NextRoundButton(buttonColor: colorCorrect, buttonLabel: buttonTextLabel, buttonRadius: buttonRadiusFloat, buttonFrame: buttonRect)
-            container.addSubview(nextRoundButtonCorrect.create())
-            
-        } else {
-            let nextRoundButtonFail = NextRoundButton(buttonColor: colorFail, buttonLabel: buttonTextLabel, buttonRadius: buttonRadiusFloat, buttonFrame: buttonRect)
-            container.addSubview(nextRoundButtonFail.create())
-            
-        }
-        
     }
 }
 

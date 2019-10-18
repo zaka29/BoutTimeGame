@@ -152,12 +152,51 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_round_success" translatesAutoresizingMaskIntoConstraints="NO" id="COq-w1-ZGX">
+                                        <rect key="frame" x="89" y="23" width="197" height="54"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="197" id="Mh6-gc-1ym"/>
+                                            <constraint firstAttribute="height" constant="54" id="Yts-4t-GWd"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="HpR-yq-Hpe" appends="YES" id="q6K-73-X8h"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_round_fail" translatesAutoresizingMaskIntoConstraints="NO" id="Kdf-Rf-hqF">
+                                        <rect key="frame" x="89" y="23" width="197" height="54"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="CN6-Y6-EUG"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="Vhn-tK-0Lm"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="197" id="Yxp-C0-ckN"/>
+                                            <constraint firstAttribute="width" constant="197" id="b1K-R4-Amt"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="71j-0l-lf4" appends="YES" id="Qrn-H0-FUf"/>
+                                        </connections>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake to complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-aB-d9d">
+                                        <rect key="frame" x="135" y="80" width="105.5" height="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="nh3-aB-d9d" firstAttribute="top" secondItem="COq-w1-ZGX" secondAttribute="bottom" constant="3" id="4mW-Bt-Z3p"/>
+                                    <constraint firstItem="COq-w1-ZGX" firstAttribute="top" secondItem="Axn-EH-VbJ" secondAttribute="top" constant="23" id="B4n-kc-z4F"/>
+                                    <constraint firstAttribute="bottom" secondItem="COq-w1-ZGX" secondAttribute="bottom" constant="23" id="CgC-kP-tHu"/>
                                     <constraint firstItem="TCV-pD-g2i" firstAttribute="centerY" secondItem="Axn-EH-VbJ" secondAttribute="centerY" id="IwT-NV-Iez"/>
+                                    <constraint firstItem="Kdf-Rf-hqF" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="OSX-1V-NlP"/>
                                     <constraint firstItem="TCV-pD-g2i" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="T8i-1x-BgH"/>
+                                    <constraint firstItem="nh3-aB-d9d" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="Vim-dc-eJj"/>
+                                    <constraint firstItem="Kdf-Rf-hqF" firstAttribute="top" secondItem="Axn-EH-VbJ" secondAttribute="top" constant="23" id="fdu-IY-3Ai"/>
                                     <constraint firstAttribute="height" constant="100" id="nfU-Rw-aFK"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kdf-Rf-hqF" secondAttribute="bottom" constant="23" id="sck-gT-eWk"/>
+                                    <constraint firstAttribute="bottom" secondItem="nh3-aB-d9d" secondAttribute="bottom" constant="5" id="tUi-8s-pZq"/>
+                                    <constraint firstItem="COq-w1-ZGX" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="uVv-Ju-YAf"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -174,6 +213,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="imageViewNextRoundFail" destination="Kdf-Rf-hqF" id="VU6-f1-6oA"/>
+                        <outlet property="imageViewNextRoundSuccess" destination="COq-w1-ZGX" id="gJ4-Qc-91a"/>
                         <outlet property="timerLabel" destination="TCV-pD-g2i" id="QYE-HZ-s1R"/>
                         <outlet property="viewCardFour" destination="Sez-kB-Q9s" id="HZ4-wR-iWw"/>
                         <outlet property="viewCardOne" destination="bmM-Wo-qjS" id="LnJ-Ix-SML"/>
@@ -213,6 +254,16 @@
                         <action selector="moveCardAction:" destination="BYZ-38-t0r" id="red-HG-MF9"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="HpR-yq-Hpe" userLabel="nextRoundSuccess">
+                    <connections>
+                        <action selector="nextRound:" destination="BYZ-38-t0r" id="Joz-wJ-Ey3"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="71j-0l-lf4" userLabel="nextRoundFail">
+                    <connections>
+                        <action selector="nextRound:" destination="BYZ-38-t0r" id="NcB-I9-XZn"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
@@ -220,6 +271,8 @@
     <resources>
         <image name="down_full" width="158" height="457"/>
         <image name="down_half" width="158" height="229"/>
+        <image name="next_round_fail" width="279" height="71"/>
+        <image name="next_round_success" width="279" height="71"/>
         <image name="up_full" width="158" height="457"/>
         <image name="up_half" width="158" height="229"/>
     </resources>
