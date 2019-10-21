@@ -147,13 +147,17 @@
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCV-pD-g2i">
-                                        <rect key="frame" x="166.5" y="29.5" width="42.5" height="41"/>
+                                        <rect key="frame" x="166.5" y="15" width="42" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="9ms-A3-tcg"/>
+                                            <constraint firstAttribute="width" constant="42" id="PU1-3f-5iq"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_round_success" translatesAutoresizingMaskIntoConstraints="NO" id="COq-w1-ZGX">
-                                        <rect key="frame" x="89" y="23" width="197" height="54"/>
+                                        <rect key="frame" x="89" y="15" width="197" height="54"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="197" id="Mh6-gc-1ym"/>
@@ -164,7 +168,7 @@
                                         </connections>
                                     </imageView>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next_round_fail" translatesAutoresizingMaskIntoConstraints="NO" id="Kdf-Rf-hqF">
-                                        <rect key="frame" x="89" y="23" width="197" height="54"/>
+                                        <rect key="frame" x="89" y="15" width="197" height="54"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="CN6-Y6-EUG"/>
@@ -177,7 +181,7 @@
                                         </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake to complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-aB-d9d">
-                                        <rect key="frame" x="135" y="80" width="105.5" height="15"/>
+                                        <rect key="frame" x="135" y="74" width="105.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -185,17 +189,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="nh3-aB-d9d" firstAttribute="top" secondItem="COq-w1-ZGX" secondAttribute="bottom" constant="3" id="4mW-Bt-Z3p"/>
-                                    <constraint firstItem="COq-w1-ZGX" firstAttribute="top" secondItem="Axn-EH-VbJ" secondAttribute="top" constant="23" id="B4n-kc-z4F"/>
-                                    <constraint firstAttribute="bottom" secondItem="COq-w1-ZGX" secondAttribute="bottom" constant="23" id="CgC-kP-tHu"/>
-                                    <constraint firstItem="TCV-pD-g2i" firstAttribute="centerY" secondItem="Axn-EH-VbJ" secondAttribute="centerY" id="IwT-NV-Iez"/>
+                                    <constraint firstAttribute="bottom" secondItem="nh3-aB-d9d" secondAttribute="bottom" constant="6.5" id="92U-wZ-WAd"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kdf-Rf-hqF" secondAttribute="bottom" constant="31" id="F4g-p5-QyN"/>
+                                    <constraint firstItem="nh3-aB-d9d" firstAttribute="top" secondItem="COq-w1-ZGX" secondAttribute="bottom" constant="5" id="HQf-7E-jqj"/>
+                                    <constraint firstAttribute="bottom" secondItem="COq-w1-ZGX" secondAttribute="bottom" constant="31" id="LED-iJ-Uo7"/>
                                     <constraint firstItem="Kdf-Rf-hqF" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="OSX-1V-NlP"/>
                                     <constraint firstItem="TCV-pD-g2i" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="T8i-1x-BgH"/>
                                     <constraint firstItem="nh3-aB-d9d" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="Vim-dc-eJj"/>
-                                    <constraint firstItem="Kdf-Rf-hqF" firstAttribute="top" secondItem="Axn-EH-VbJ" secondAttribute="top" constant="23" id="fdu-IY-3Ai"/>
+                                    <constraint firstItem="TCV-pD-g2i" firstAttribute="top" secondItem="Axn-EH-VbJ" secondAttribute="top" constant="15" id="Yu9-mc-uPn"/>
+                                    <constraint firstItem="COq-w1-ZGX" firstAttribute="top" secondItem="Axn-EH-VbJ" secondAttribute="top" constant="15" id="Yyw-aL-dT5"/>
+                                    <constraint firstAttribute="bottom" secondItem="TCV-pD-g2i" secondAttribute="bottom" constant="43" id="ZvF-B7-o3n"/>
+                                    <constraint firstItem="Kdf-Rf-hqF" firstAttribute="top" secondItem="Axn-EH-VbJ" secondAttribute="top" constant="15" id="cVu-Vh-Xot"/>
                                     <constraint firstAttribute="height" constant="100" id="nfU-Rw-aFK"/>
-                                    <constraint firstAttribute="bottom" secondItem="Kdf-Rf-hqF" secondAttribute="bottom" constant="23" id="sck-gT-eWk"/>
-                                    <constraint firstAttribute="bottom" secondItem="nh3-aB-d9d" secondAttribute="bottom" constant="5" id="tUi-8s-pZq"/>
                                     <constraint firstItem="COq-w1-ZGX" firstAttribute="centerX" secondItem="Axn-EH-VbJ" secondAttribute="centerX" id="uVv-Ju-YAf"/>
                                 </constraints>
                             </view>

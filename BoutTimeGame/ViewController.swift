@@ -13,6 +13,7 @@ class ViewController: UIViewController {
    
     var historicalFacts: [HistoryIvent]? = []
     var gameRound: BoutTimeGameRound?
+    var roundsPlayed: Int = 0
     
     @IBOutlet weak var viewCardOne: UIView!
     @IBOutlet weak var viewCardTwo: UIView!
@@ -127,6 +128,7 @@ class ViewController: UIViewController {
     func startGameRound() {
         imageViewNextRoundSuccess.isHidden = true
         imageViewNextRoundFail.isHidden = true
+        self.roundsPlayed += 1
         
         do {
             let cardsDataDictionary = try PlistConverter.dictionary(fromFile: "HistoryFacts", ofType: "plist")
@@ -160,6 +162,7 @@ class ViewController: UIViewController {
     }
     
     func drawBoutGameScreen() {
+        cleanGameRoundCardLabelText()
         
         for cardo in GameRoundCards.allCases {
             switch cardo {
@@ -191,6 +194,13 @@ class ViewController: UIViewController {
                 label.text = text
             }
         }
+    }
+    
+    func cleanGameRoundCardLabelText() {
+        updateCardlabelText(forCardView: viewCardOne, labelText: "")
+        updateCardlabelText(forCardView: viewCardTwo, labelText: "")
+        updateCardlabelText(forCardView: viewCardThree, labelText: "")
+        updateCardlabelText(forCardView: viewCardFour, labelText: "")
     }
   
     @IBAction func nextRound(_ sender: UITapGestureRecognizer) {
