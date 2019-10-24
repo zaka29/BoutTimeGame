@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var historicalFacts: [HistoryIvent]? = []
     var gameRound: BoutTimeGameRound?
     var roundsPlayed: Int = 0
+    var guessedCorrectly: Int = 0
     
     @IBOutlet weak var viewCardOne: UIView!
     @IBOutlet weak var viewCardTwo: UIView!
@@ -32,6 +33,16 @@ class ViewController: UIViewController {
         drawBoutGameScreen()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let scoreViewContoller = segue.destination as? ScoreViewController else {return}
+        // get a score somehow here
+        var scoreText: String = "n/a"
+        if let rounds = gameRound?.roundsCount {
+           scoreText = "\(self.guessedCorrectly)/\(rounds)"
+        }
+               
+        scoreViewContoller.scoreLabelValue = scoreText
+    }
     
     @IBAction func moveCardAction(_ sender: UITapGestureRecognizer) {
         guard sender.view != nil else { return }
@@ -130,6 +141,8 @@ class ViewController: UIViewController {
         imageViewNextRoundFail.isHidden = true
         self.roundsPlayed += 1
         
+        
+        
         do {
             let cardsDataDictionary = try PlistConverter.dictionary(fromFile: "HistoryFacts", ofType: "plist")
             historicalFacts = try BoutGameCardsAdaptor.createCrads(fromDictionary: cardsDataDictionary)
@@ -138,7 +151,7 @@ class ViewController: UIViewController {
         }
         
         if let facts = historicalFacts {
-            self.gameRound = BoutTimeGameRound(cardFacts: facts)
+            self.gameRound = BoutTimeGameRound(cardFacts: facts, howManyRounds: 4)
             // Pass the next round buttons views here
             self.gameRound?.startGameTimer(label: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
         }
@@ -205,8 +218,20 @@ class ViewController: UIViewController {
   
     @IBAction func nextRound(_ sender: UITapGestureRecognizer) {
         guard sender.view != nil else { return }
+        // Set correct or fail guess
+        if let guessedCorrectly = gameRound?.roundVictory {
+            if (guessedCorrectly){
+                self.guessedCorrectly += 1
+            }
+        }
         
-        print("Next round tapped")
+        print("Next round tapped: Correct guesese: \(self.guessedCorrectly)")
+        
+        if let rounds = gameRound?.roundsCount {
+            if(roundsPlayed > rounds) {
+                performSegue(withIdentifier: "segueScore", sender: self)
+            }
+        }
         
         startGameRound()
         drawBoutGameScreen()

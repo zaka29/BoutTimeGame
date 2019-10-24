@@ -19,6 +19,8 @@ protocol GameRound {
     var cardsSetting: [GameRoundCards: HistoryIvent] {get set}
     var cardsCorrectOrder: [HistoryIvent] {get set}
     var cardItems: [BoutTimeCard] {get set}
+    var roundVictory: Bool {get set}
+    var roundsCount: Int {get set}
     
     func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView)
     func checkOreder(correctEventsOrder eventsOrder: [HistoryIvent], currentSetting cardSetting: [GameRoundCards: HistoryIvent]) -> Bool
@@ -177,8 +179,13 @@ class BoutTimeGameRound: GameRound {
     var cardsCorrectOrder: [HistoryIvent]
     var cardItems: [BoutTimeCard] = []
     var cardsSetting: [GameRoundCards : HistoryIvent] = [:]
+    var roundVictory: Bool
+    var roundsCount: Int
     
-    init(cardFacts facts: [HistoryIvent]) {
+    init(cardFacts facts: [HistoryIvent], howManyRounds rounds: Int) {
+        self.roundVictory = false
+        self.roundsCount = rounds
+        
         var factGenerator = RandomFactsGenerator(howManyFacts: 4, factsCollection: facts)
         let randomFacts = factGenerator.generate()
         
@@ -207,9 +214,12 @@ class BoutTimeGameRound: GameRound {
     func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
         var secondsCount: Int = 30
         label.isHidden = false
-        
+        // debug purposes:
+        print("👏🏻 CORRECT ANSWER")
+        for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
+            print("This \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
+        }
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            
             secondsCount -= 1
             let time = TimeInterval(secondsCount)
             let seconds = Int(time) % 60
@@ -225,7 +235,10 @@ class BoutTimeGameRound: GameRound {
                 label.isHidden = true
                 if self.checkOreder(correctEventsOrder: self.cardsCorrectOrder, currentSetting: self.cardsSetting) {
                     print("all correct.. 👏🏻")
+                    self.roundVictory = true
                     viewSuccess.isHidden = false
+                    
+                    // debug purposes:
                     for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
                         print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
                     }
@@ -233,6 +246,7 @@ class BoutTimeGameRound: GameRound {
                 } else {
                     print("sorry you lost.. try again 👾")
                     viewFail.isHidden = false
+                    // debug purposes:
                     for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
                         print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
                     }

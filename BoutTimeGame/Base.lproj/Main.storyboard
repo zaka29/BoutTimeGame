@@ -226,6 +226,7 @@
                         <outlet property="viewCardThree" destination="JQG-yH-fnj" id="m0y-Dm-LDa"/>
                         <outlet property="viewCardTwo" destination="wfe-1U-hdk" id="1dQ-ht-huW"/>
                         <outlet property="viewFooter" destination="Axn-EH-VbJ" id="d7h-ij-tO9"/>
+                        <segue destination="j5x-K7-bwk" kind="presentation" identifier="segueScore" id="XaY-2y-asF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -272,12 +273,70 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
+        <!--Score View Controller-->
+        <scene sceneID="aA0-wS-geh">
+            <objects>
+                <viewController id="j5x-K7-bwk" customClass="ScoreViewController" customModule="BoutTimeGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AZt-qo-b0S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_again" translatesAutoresizingMaskIntoConstraints="NO" id="ew2-kr-WHp">
+                                <rect key="frame" x="88.5" y="349" width="198" height="52"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="DeI-lc-F6K"/>
+                                    <constraint firstAttribute="width" constant="198" id="My6-s2-Euh"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="MDV-x6-JHJ" appends="YES" id="lrY-zp-obc"/>
+                                </connections>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vE-qP-c9V">
+                                <rect key="frame" x="146.5" y="229" width="82" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.1782974303" green="0.49880486730000001" blue="0.64315861460000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wp9-7H-kEc">
+                                <rect key="frame" x="160.5" y="255" width="54" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.01712355204" green="0.15306198600000001" blue="0.29413342479999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="8vE-qP-c9V" firstAttribute="centerX" secondItem="AZt-qo-b0S" secondAttribute="centerX" id="2HJ-rT-ZE3"/>
+                            <constraint firstItem="ew2-kr-WHp" firstAttribute="centerX" secondItem="AZt-qo-b0S" secondAttribute="centerX" id="7N3-la-rb3"/>
+                            <constraint firstItem="Wp9-7H-kEc" firstAttribute="top" secondItem="8vE-qP-c9V" secondAttribute="bottom" constant="5" id="LRA-DT-ER0"/>
+                            <constraint firstItem="vru-Of-Vzl" firstAttribute="bottom" secondItem="ew2-kr-WHp" secondAttribute="bottom" constant="246" id="XoY-yZ-MBw"/>
+                            <constraint firstItem="8vE-qP-c9V" firstAttribute="top" secondItem="vru-Of-Vzl" secondAttribute="top" constant="229" id="YI0-eZ-78K"/>
+                            <constraint firstItem="ew2-kr-WHp" firstAttribute="top" secondItem="8vE-qP-c9V" secondAttribute="bottom" constant="99" id="bcA-ps-vqk"/>
+                            <constraint firstItem="Wp9-7H-kEc" firstAttribute="centerX" secondItem="AZt-qo-b0S" secondAttribute="centerX" id="cmX-3b-33Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vru-Of-Vzl"/>
+                    </view>
+                    <connections>
+                        <outlet property="scoreTextLabel" destination="Wp9-7H-kEc" id="tF2-i0-pQD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZcK-h3-2Xh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MDV-x6-JHJ" userLabel="playAgain">
+                    <connections>
+                        <action selector="playAgainAction:" destination="j5x-K7-bwk" id="Tbh-ZI-bzW"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1016.8" y="132.68365817091455"/>
+        </scene>
     </scenes>
     <resources>
         <image name="down_full" width="158" height="457"/>
         <image name="down_half" width="158" height="229"/>
         <image name="next_round_fail" width="279" height="71"/>
         <image name="next_round_success" width="279" height="71"/>
+        <image name="play_again" width="225" height="71"/>
         <image name="up_full" width="158" height="457"/>
         <image name="up_half" width="158" height="229"/>
     </resources>
