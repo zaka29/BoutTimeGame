@@ -21,10 +21,13 @@ protocol GameRound {
     var cardItems: [BoutTimeCard] {get set}
     var roundVictory: Bool {get set}
     var roundsCount: Int {get set}
+    var gameTimer: Timer? {get set}
     
     func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView)
     func checkOreder(correctEventsOrder eventsOrder: [HistoryIvent], currentSetting cardSetting: [GameRoundCards: HistoryIvent]) -> Bool
     func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards)
+    func stopGametimer()
+    func finishGameRound(timerLabel label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView)
 }
 
 protocol BoutTimeCard {
@@ -181,6 +184,7 @@ class BoutTimeGameRound: GameRound {
     var cardsSetting: [GameRoundCards : HistoryIvent] = [:]
     var roundVictory: Bool
     var roundsCount: Int
+    var gameTimer: Timer?
     
     init(cardFacts facts: [HistoryIvent], howManyRounds rounds: Int) {
         self.roundVictory = false
@@ -212,14 +216,18 @@ class BoutTimeGameRound: GameRound {
     }
     
     func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
+        guard gameTimer == nil else { return }
+        
         var secondsCount: Int = 30
         label.isHidden = false
+        
         // debug purposes:
         print("👏🏻 CORRECT ANSWER")
         for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
             print("This \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
         }
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+        
+        gameTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             secondsCount -= 1
             let time = TimeInterval(secondsCount)
             let seconds = Int(time) % 60
@@ -274,6 +282,24 @@ class BoutTimeGameRound: GameRound {
     
     func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards) {
         self.cardsSetting.updateValue(event, forKey: card)
+    }
+    
+    func stopGametimer() {
+        gameTimer?.invalidate()
+        gameTimer = nil
+    }
+    
+    func finishGameRound(timerLabel label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
+        stopGametimer()
+        print("game stopped on shake device gesture")
+        
+        label.isHidden = true
+        if self.checkOreder(correctEventsOrder: self.cardsCorrectOrder, currentSetting: self.cardsSetting) {
+            self.roundVictory = true
+            viewSuccess.isHidden = false
+        } else {
+            viewFail.isHidden = false
+        }
     }
 }
 

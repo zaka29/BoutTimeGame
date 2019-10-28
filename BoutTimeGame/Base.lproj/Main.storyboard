@@ -322,9 +322,10 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcK-h3-2Xh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="unT-PX-1yk" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="MDV-x6-JHJ" userLabel="playAgain">
                     <connections>
-                        <action selector="playAgainAction:" destination="j5x-K7-bwk" id="Tbh-ZI-bzW"/>
+                        <segue destination="unT-PX-1yk" kind="unwind" unwindAction="startOver:" id="EK4-Mj-va4"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

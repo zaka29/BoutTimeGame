@@ -44,6 +44,10 @@ class ViewController: UIViewController {
         scoreViewContoller.scoreLabelValue = scoreText
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        gameRound?.finishGameRound(timerLabel: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
+    }
+    
     @IBAction func moveCardAction(_ sender: UITapGestureRecognizer) {
         guard sender.view != nil else { return }
         
@@ -137,11 +141,10 @@ class ViewController: UIViewController {
     }
     
     func startGameRound() {
+        gameRound?.stopGametimer()
         imageViewNextRoundSuccess.isHidden = true
         imageViewNextRoundFail.isHidden = true
         self.roundsPlayed += 1
-        
-        
         
         do {
             let cardsDataDictionary = try PlistConverter.dictionary(fromFile: "HistoryFacts", ofType: "plist")
@@ -217,7 +220,10 @@ class ViewController: UIViewController {
     }
   
     @IBAction func nextRound(_ sender: UITapGestureRecognizer) {
+        print("Next round tapped: Correct guesese: \(self.guessedCorrectly)")
+        
         guard sender.view != nil else { return }
+        
         // Set correct or fail guess
         if let guessedCorrectly = gameRound?.roundVictory {
             if (guessedCorrectly){
@@ -225,16 +231,24 @@ class ViewController: UIViewController {
             }
         }
         
-        print("Next round tapped: Correct guesese: \(self.guessedCorrectly)")
-        
         if let rounds = gameRound?.roundsCount {
             if(roundsPlayed > rounds) {
+                // do some optimisation here: stop kill existing timer and the game
+                gameRound?.stopGametimer()
                 performSegue(withIdentifier: "segueScore", sender: self)
+            } else {
+                startGameRound()
+                drawBoutGameScreen()
             }
+        } else {
+            // do some error handling here
+            return
         }
-        
+    }
+    
+    @IBAction func startOver(_ sender: UIStoryboardSegue) {
+        guard sender.source is ScoreViewController else { return }
         startGameRound()
         drawBoutGameScreen()
     }
 }
-
