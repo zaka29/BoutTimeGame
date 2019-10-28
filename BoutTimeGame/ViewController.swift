@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var imageViewNextRoundSuccess: UIImageView!
     @IBOutlet weak var imageViewNextRoundFail: UIImageView!
+    @IBOutlet weak var underButtonTextlabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -248,6 +249,8 @@ class ViewController: UIViewController {
     
     @IBAction func startOver(_ sender: UIStoryboardSegue) {
         guard sender.source is ScoreViewController else { return }
+        self.roundsPlayed = 0
+        self.guessedCorrectly = 0
         startGameRound()
         drawBoutGameScreen()
     }

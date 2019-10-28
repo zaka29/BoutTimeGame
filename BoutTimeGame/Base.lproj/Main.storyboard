@@ -183,7 +183,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake to complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-aB-d9d">
                                         <rect key="frame" x="135" y="74" width="105.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.1782974303" green="0.49880486730000001" blue="0.64315861460000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -221,6 +221,7 @@
                         <outlet property="imageViewNextRoundFail" destination="Kdf-Rf-hqF" id="VU6-f1-6oA"/>
                         <outlet property="imageViewNextRoundSuccess" destination="COq-w1-ZGX" id="gJ4-Qc-91a"/>
                         <outlet property="timerLabel" destination="TCV-pD-g2i" id="QYE-HZ-s1R"/>
+                        <outlet property="underButtonTextlabel" destination="nh3-aB-d9d" id="dCG-gl-zm0"/>
                         <outlet property="viewCardFour" destination="Sez-kB-Q9s" id="HZ4-wR-iWw"/>
                         <outlet property="viewCardOne" destination="bmM-Wo-qjS" id="LnJ-Ix-SML"/>
                         <outlet property="viewCardThree" destination="JQG-yH-fnj" id="m0y-Dm-LDa"/>
@@ -295,7 +296,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vE-qP-c9V">
                                 <rect key="frame" x="146.5" y="229" width="82" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.1782974303" green="0.49880486730000001" blue="0.64315861460000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.1764705882352941" green="0.49803921568627452" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wp9-7H-kEc">

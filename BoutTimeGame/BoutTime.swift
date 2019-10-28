@@ -233,6 +233,7 @@ class BoutTimeGameRound: GameRound {
             let seconds = Int(time) % 60
             
             label.text = "\(String(format:"%02i", seconds))"
+            label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             
             if secondsCount < 10 {
                 label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
@@ -292,7 +293,7 @@ class BoutTimeGameRound: GameRound {
     func finishGameRound(timerLabel label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
         stopGametimer()
         print("game stopped on shake device gesture")
-        
+        label.text = ""
         label.isHidden = true
         if self.checkOreder(correctEventsOrder: self.cardsCorrectOrder, currentSetting: self.cardsSetting) {
             self.roundVictory = true
