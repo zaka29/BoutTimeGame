@@ -220,6 +220,8 @@ class BoutTimeGameRound: GameRound {
         
         var secondsCount: Int = 30
         label.isHidden = false
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.text = "30"
         
         // debug purposes:
         print("👏🏻 CORRECT ANSWER")
@@ -232,15 +234,17 @@ class BoutTimeGameRound: GameRound {
             let time = TimeInterval(secondsCount)
             let seconds = Int(time) % 60
             
-            label.text = "\(String(format:"%02i", seconds))"
             label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            label.text = "\(String(format:"%02i", seconds))"
             
-            if secondsCount < 10 {
-                label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            
+            if secondsCount <= 10 {
+                label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.07518950959, alpha: 1)
             }
         
             if secondsCount == 0 {
                 timer.invalidate()
+                label.text = ""
                 label.isHidden = true
                 if self.checkOreder(correctEventsOrder: self.cardsCorrectOrder, currentSetting: self.cardsSetting) {
                     print("all correct.. 👏🏻")
