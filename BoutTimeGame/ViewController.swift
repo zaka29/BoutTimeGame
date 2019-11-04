@@ -31,6 +31,7 @@ class ViewController: UIViewController {
 
         startGameRound()
         drawBoutGameScreen()
+        print("testts")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -263,10 +264,13 @@ class ViewController: UIViewController {
     }
     
     func drawTextLabel(labeltext text: String?) -> UILabel {
-        let rect = CGRect(x: 10, y: 10, width: 200, height: 25)
+        let rect = CGRect(x: 20, y: 20, width: 200, height: 80)
         let textLabel = UILabel(frame: rect)
         
+        textLabel.font = UIFont.systemFont(ofSize: 24.0, weight: .light)
+        textLabel.numberOfLines = 3
         textLabel.text = text
+        textLabel.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         
         return textLabel
     }

@@ -13,6 +13,7 @@ protocol HistoryIvent {
     var title: String {get}
     var description: String {get}
     var eventDate: String {get}
+    var year: Int {get}
 }
 
 protocol GameRound {
@@ -84,8 +85,7 @@ struct NextRoundButton {
         buttonView.backgroundColor = buttonColor
         buttonView.layer.cornerRadius = buttonRadius
         buttonView.addSubview(buttonLabel)
-        
-        
+
         return buttonView
     }
 }
@@ -94,7 +94,9 @@ struct ArtMovement: HistoryIvent  {
     var title: String
     var description: String
     var eventDate: String
+    var year: Int
 }
+
 
 
 class PlistConverter {
@@ -124,10 +126,10 @@ class BoutGameCardsAdaptor {
             var cards: [HistoryIvent] = []
             
             for eventItem in dictionary {
-                if let item = eventItem.value as? [String: Any], let itemDescription = item["description"] as? String, let itemDate = item["eventDate"] as? Date, let itemName = item["eventName"] as? String {
+                if let item = eventItem.value as? [String: Any], let itemDescription = item["description"] as? String, let itemDate = item["eventDate"] as? Date, let itemName = item["eventName"] as? String, let itemYear = item["year"] as? Int {
                     let eventDateString = formatter.string(from: itemDate)
                     
-                    let movementItem = ArtMovement(title: itemName, description: itemDescription, eventDate: eventDateString)
+                    let movementItem = ArtMovement(title: itemName, description: itemDescription, eventDate: eventDateString, year: itemYear)
             
                     cards.append(movementItem)
                 } else {
@@ -212,7 +214,8 @@ class BoutTimeGameRound: GameRound {
     }
     
     static func calculateCorrectOrder(ofFacts facts: [HistoryIvent]) -> [HistoryIvent] {
-        return facts.sorted(by: {$0.eventDate.compare($1.eventDate) == .orderedDescending})
+//        return facts.sorted(by: {$0.eventDate.compare($1.eventDate) == .orderedDescending})
+        return facts.sorted(by: {$0.year > $1.year})
     }
     
     func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
@@ -226,7 +229,7 @@ class BoutTimeGameRound: GameRound {
         // debug purposes:
         print("👏🏻 CORRECT ANSWER")
         for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
-            print("This \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
+            print("This \(index) -> \(eventFact.title) - \(eventFact.year)")
         }
         
         gameTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
@@ -253,7 +256,7 @@ class BoutTimeGameRound: GameRound {
                     
                     // debug purposes:
                     for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
-                        print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
+                        print("card \(index) -> \(eventFact.title) - \(eventFact.year)")
                     }
                     
                 } else {
@@ -261,7 +264,7 @@ class BoutTimeGameRound: GameRound {
                     viewFail.isHidden = false
                     // debug purposes:
                     for (index, eventFact) in self.cardsCorrectOrder.enumerated() {
-                        print("card \(index) -> \(eventFact.title) - \(eventFact.eventDate)")
+                        print("card \(index) -> \(eventFact.title) - \(eventFact.year)")
                     }
                     
                 }

@@ -2,68 +2,470 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>factFourtyTwo</key>
+	<dict>
+		<key>year</key>
+		<integer>1600</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Baroque</string>
+	</dict>
+	<key>factFourtyOne</key>
+	<dict>
+		<key>year</key>
+		<integer>1699</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Rococo</string>
+	</dict>
+	<key>factFourty</key>
+	<dict>
+		<key>year</key>
+		<integer>1750</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Neoclassicism</string>
+	</dict>
+	<key>factThityNine</key>
+	<dict>
+		<key>year</key>
+		<integer>1780</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Romanticism</string>
+	</dict>
+	<key>factThityEight</key>
+	<dict>
+		<key>year</key>
+		<integer>1848</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Realism</string>
+	</dict>
+	<key>factThitySeven</key>
+	<dict>
+		<key>year</key>
+		<integer>1980</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>YBA - Young British Artists</string>
+	</dict>
+	<key>factThitySix</key>
+	<dict>
+		<key>year</key>
+		<integer>1978</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Neo-Expressionism</string>
+	</dict>
+	<key>factThityFive</key>
+	<dict>
+		<key>year</key>
+		<integer>1974</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>The Pictures Generation</string>
+	</dict>
+	<key>factThityFour</key>
+	<dict>
+		<key>year</key>
+		<integer>1969</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Photorealism</string>
+	</dict>
+	<key>factThityThree</key>
+	<dict>
+		<key>year</key>
+		<integer>1968</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Feminist Art</string>
+	</dict>
+	<key>factThityTwo</key>
+	<dict>
+		<key>year</key>
+		<integer>1967</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Earth Art</string>
+	</dict>
+	<key>factThityOne</key>
+	<dict>
+		<key>year</key>
+		<integer>1966</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Post-Minimalism</string>
+	</dict>
+	<key>factThity</key>
+	<dict>
+		<key>year</key>
+		<integer>1964</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Conceptual Art</string>
+	</dict>
+	<key>factTwentyNine</key>
+	<dict>
+		<key>year</key>
+		<integer>1963</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Minimalism</string>
+	</dict>
+	<key>factTwentyEight</key>
+	<dict>
+		<key>year</key>
+		<integer>1962</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Arte Povera</string>
+	</dict>
+	<key>factTwentySeven</key>
+	<dict>
+		<key>year</key>
+		<integer>1961</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Viennese Actionism</string>
+	</dict>
+	<key>factTwentySix</key>
+	<dict>
+		<key>year</key>
+		<integer>1960</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Performance Art</string>
+	</dict>
+	<key>factTwentyFive</key>
+	<dict>
+		<key>year</key>
+		<integer>1959</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Fluxus</string>
+	</dict>
+	<key>factTwentyFour</key>
+	<dict>
+		<key>year</key>
+		<integer>1958</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Happenings</string>
+	</dict>
+	<key>factTwentyThree</key>
+	<dict>
+		<key>year</key>
+		<integer>1956</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Pop Art</string>
+	</dict>
+	<key>factTwentyTwo</key>
+	<dict>
+		<key>year</key>
+		<integer>1955</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Gutai</string>
+	</dict>
+	<key>factTwentyOne</key>
+	<dict>
+		<key>year</key>
+		<integer>1954</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Kinetic and Op Art</string>
+	</dict>
+	<key>factTwenty</key>
+	<dict>
+		<key>year</key>
+		<integer>1952</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Neo-Dada</string>
+	</dict>
+	<key>factNinteen</key>
+	<dict>
+		<key>year</key>
+		<integer>1940</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Color Field Painting</string>
+	</dict>
+	<key>factEighteen</key>
+	<dict>
+		<key>year</key>
+		<integer>1943</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Abstract Expressionism
+Abstract Expressionism
+Abstract Expressionism
+Abstract Expressionism</string>
+	</dict>
+	<key>factSeventeen</key>
+	<dict>
+		<key>year</key>
+		<integer>1929</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Social Realism</string>
+	</dict>
+	<key>factSixteen</key>
+	<dict>
+		<key>year</key>
+		<integer>1924</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Surrealism</string>
+	</dict>
+	<key>factFifteen</key>
+	<dict>
+		<key>year</key>
+		<integer>1919</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Bauhaus</string>
+	</dict>
+	<key>factFourteen</key>
+	<dict>
+		<key>year</key>
+		<integer>1915</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Constructivism</string>
+	</dict>
+	<key>factThirteen</key>
+	<dict>
+		<key>year</key>
+		<integer>1917</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>De Stijl</string>
+	</dict>
+	<key>factTwelve</key>
+	<dict>
+		<key>year</key>
+		<integer>1916</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Dada</string>
+	</dict>
+	<key>factEleven</key>
+	<dict>
+		<key>year</key>
+		<integer>1913</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Suprematism</string>
+	</dict>
+	<key>factTen</key>
+	<dict>
+		<key>year</key>
+		<integer>1909</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Futurism</string>
+	</dict>
+	<key>factNine</key>
+	<dict>
+		<key>year</key>
+		<integer>1907</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Cubism</string>
+	</dict>
+	<key>factEight</key>
+	<dict>
+		<key>year</key>
+		<integer>1905</integer>
+		<key>description</key>
+		<string>get a feed back over here, just some words from my heas</string>
+		<key>eventDate</key>
+		<date>2019-07-15T13:21:40Z</date>
+		<key>eventName</key>
+		<string>Expressionism</string>
+	</dict>
 	<key>factSeven</key>
 	<dict>
+		<key>year</key>
+		<integer>1900</integer>
 		<key>description</key>
 		<string>get a feed back over here, just some words from my heas</string>
 		<key>eventDate</key>
 		<date>2019-07-12T13:21:40Z</date>
 		<key>eventName</key>
-		<string>Test event seven</string>
+		<string>Ashcan School</string>
 	</dict>
 	<key>factSix</key>
 	<dict>
+		<key>year</key>
+		<integer>1899</integer>
 		<key>description</key>
 		<string>get a feed back over here, just some words from my heas</string>
 		<key>eventDate</key>
 		<date>2019-07-12T13:20:30Z</date>
 		<key>eventName</key>
-		<string>Test event six</string>
+		<string>Fauvism</string>
 	</dict>
 	<key>factFive</key>
 	<dict>
+		<key>year</key>
+		<integer>1890</integer>
 		<key>description</key>
 		<string>get a feed back over here, just some words from my heas</string>
 		<key>eventDate</key>
 		<date>2019-07-12T13:20:42Z</date>
 		<key>eventName</key>
-		<string>Test event five</string>
+		<string>Art Nouveau</string>
 	</dict>
 	<key>factFour</key>
 	<dict>
+		<key>year</key>
+		<integer>1885</integer>
 		<key>eventDate</key>
 		<date>2019-07-16T13:20:12Z</date>
 		<key>description</key>
 		<string>Test text decription test tesxt</string>
 		<key>eventName</key>
-		<string>Test event one</string>
+		<string>Post-Impressionism</string>
 	</dict>
 	<key>factOne</key>
 	<dict>
+		<key>year</key>
+		<integer>1865</integer>
 		<key>description</key>
 		<string>test text here comes so easy</string>
 		<key>eventDate</key>
 		<date>2019-07-16T13:20:19Z</date>
 		<key>eventName</key>
-		<string>Test event two</string>
+		<string>Impressionism</string>
 	</dict>
 	<key>factTwo</key>
 	<dict>
+		<key>year</key>
+		<integer>1880</integer>
 		<key>description</key>
 		<string>so easy to type here</string>
 		<key>eventDate</key>
 		<date>2019-07-13T13:20:29Z</date>
 		<key>eventName</key>
-		<string>Test event three</string>
+		<string>Symbolism</string>
 	</dict>
 	<key>factThree</key>
 	<dict>
+		<key>year</key>
+		<integer>1883</integer>
 		<key>description</key>
 		<string>get a feed back over here, just some words from my heas</string>
 		<key>eventDate</key>
 		<date>2019-07-12T13:20:40Z</date>
 		<key>eventName</key>
-		<string>Test event four</string>
+		<string>Les Nabis</string>
 	</dict>
 </dict>
 </plist>
