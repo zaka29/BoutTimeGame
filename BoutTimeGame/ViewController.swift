@@ -249,17 +249,9 @@ class ViewController: UIViewController {
         }
         
         if let facts = historicalFacts {
-            self.gameRound = BoutTimeGameRound(cardFacts: facts, howManyRounds: 4)
+            self.gameRound = BoutTimeGameRound(cardFacts: facts, howManyRounds: 6)
             // Pass the next round buttons views here
             self.gameRound?.startGameTimer(label: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
-        }
-        
-        // For debugging  purposes
-        if let facts = historicalFacts {
-            print("Facts length \(facts.count)")
-            for fact in facts {
-                print(fact.title)
-            }
         }
     }
     

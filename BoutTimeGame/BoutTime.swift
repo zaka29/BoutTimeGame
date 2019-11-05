@@ -159,6 +159,17 @@ struct RandomFactsGenerator {
         return outputCollection
     }
     
+    func contiansDuplicates(inArray arrayOf: [HistoryIvent]) -> Bool {
+        let crossReference = Dictionary(grouping: arrayOf, by: { $0.year })
+        let duplicates = crossReference.filter {$1.count > 1}
+        
+        if (duplicates.count > 0) {
+            return true
+        }
+        
+        return false
+    }
+    
 }
 
 class BoutTimeCardItem: BoutTimeCard {
@@ -193,8 +204,13 @@ class BoutTimeGameRound: GameRound {
         self.roundsCount = rounds
         
         var factGenerator = RandomFactsGenerator(howManyFacts: 4, factsCollection: facts)
-        let randomFacts = factGenerator.generate()
+        var randomFacts = factGenerator.generate()
         
+        if factGenerator.contiansDuplicates(inArray: randomFacts){
+            while factGenerator.contiansDuplicates(inArray: randomFacts) {
+                randomFacts = factGenerator.generate()
+            }
+        }
         
         for (index, fact) in randomFacts.enumerated() {
             let boutTimeCardItem = BoutTimeCardItem(forFact: fact, position: index)
@@ -208,9 +224,6 @@ class BoutTimeGameRound: GameRound {
         
         // Here we set correct card items order e.g.correct answer
         self.cardsCorrectOrder = BoutTimeGameRound.calculateCorrectOrder(ofFacts: randomFacts)
-        
-        print("GameRound creator CardItems length - \(cardItems.count)")
-        
     }
     
     static func calculateCorrectOrder(ofFacts facts: [HistoryIvent]) -> [HistoryIvent] {
@@ -221,10 +234,10 @@ class BoutTimeGameRound: GameRound {
     func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
         guard gameTimer == nil else { return }
         
-        var secondsCount: Int = 30
+        var secondsCount: Int = 60
         label.isHidden = false
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        label.text = "30"
+        label.text = "60"
         
         // debug purposes:
         print("👏🏻 CORRECT ANSWER")
@@ -239,7 +252,6 @@ class BoutTimeGameRound: GameRound {
             
             label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             label.text = "\(String(format:"%02i", seconds))"
-            
             
             if secondsCount <= 10 {
                 label.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.07518950959, alpha: 1)

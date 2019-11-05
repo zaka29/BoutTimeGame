@@ -333,12 +333,48 @@
                                     <action selector="dismissAction:" destination="hA7-5K-c6F" eventType="touchUpInside" id="B7M-HK-GI9"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Bout Time Art Movements game." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkA-03-ZJV">
+                                <rect key="frame" x="15.5" y="102" width="289" height="38.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="289" id="Tiq-Wx-Vpt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="0.49534053090000002" blue="0.4060694205" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xx-rW-3Wu">
+                                <rect key="frame" x="17" y="170.5" width="286" height="174"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="286" id="8RZ-Hv-pyc"/>
+                                </constraints>
+                                <string key="text">You will get displayed four cards where each one names particular art movement in the history of art. The goal of the game is to arrange the cards in correct chronological order where the youngest goes from the top to the oldest sitting in the bottom of the stack. You have 60 seconds to complete. 
+- Tap on the arrows of each card to swap their positions. 
+- Shake the device if you want to finish round. The game lasts for six rounds.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="no" smartDashesType="yes"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good luck 🤓" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfg-lu-1ty">
+                                <rect key="frame" x="115" y="374.5" width="90" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="1CH-Df-EZr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.49534053090000002" blue="0.4060694205" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.01712355204" green="0.15306198600000001" blue="0.29413342479999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="QFA-yv-BJV" firstAttribute="centerX" secondItem="iII-3q-PT5" secondAttribute="centerX" id="FEK-Ao-M5R"/>
+                            <constraint firstItem="RkA-03-ZJV" firstAttribute="top" secondItem="cRj-Ey-CWn" secondAttribute="bottom" constant="30" id="LIR-gL-rj8"/>
+                            <constraint firstItem="gfg-lu-1ty" firstAttribute="centerX" secondItem="iII-3q-PT5" secondAttribute="centerX" id="Uup-1r-c9C"/>
                             <constraint firstItem="cRj-Ey-CWn" firstAttribute="top" secondItem="Mj6-Th-82g" secondAttribute="top" constant="48" id="UwP-0Y-FUf"/>
+                            <constraint firstItem="RkA-03-ZJV" firstAttribute="centerX" secondItem="iII-3q-PT5" secondAttribute="centerX" id="Zzb-hW-HNJ"/>
+                            <constraint firstItem="gfg-lu-1ty" firstAttribute="top" secondItem="5Xx-rW-3Wu" secondAttribute="bottom" constant="30" id="hke-S6-oaz"/>
+                            <constraint firstItem="5Xx-rW-3Wu" firstAttribute="centerX" secondItem="iII-3q-PT5" secondAttribute="centerX" id="pLp-qf-vaj"/>
                             <constraint firstItem="Mj6-Th-82g" firstAttribute="bottom" secondItem="QFA-yv-BJV" secondAttribute="bottom" constant="47" id="vGT-u6-9f5"/>
+                            <constraint firstItem="5Xx-rW-3Wu" firstAttribute="top" secondItem="RkA-03-ZJV" secondAttribute="bottom" constant="30" id="vnG-Pv-AOj"/>
                             <constraint firstItem="cRj-Ey-CWn" firstAttribute="centerX" secondItem="iII-3q-PT5" secondAttribute="centerX" id="woz-kl-MAU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mj6-Th-82g"/>
@@ -346,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YqW-pI-vfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016.8" y="908.9955022488756"/>
+            <point key="canvasLocation" x="1016.25" y="908.45070422535207"/>
         </scene>
     </scenes>
     <resources>
