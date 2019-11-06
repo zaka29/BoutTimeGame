@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     var gameRound: BoutTimeGameRound?
     var roundsPlayed: Int = 0
     var guessedCorrectly: Int = 0
+    var controller: WebPageViewController?
+    
     
     @IBOutlet weak var viewCardOne: UIView!
     @IBOutlet weak var viewCardTwo: UIView!
@@ -28,123 +30,58 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         startGameRound()
         drawBoutGameScreen()
-        print("testts")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let scoreViewContoller = segue.destination as? ScoreViewController else {return}
-        // get a score somehow here
-        var scoreText: String = "n/a"
-        if let rounds = gameRound?.roundsCount {
-           scoreText = "\(self.guessedCorrectly)/\(rounds)"
+        print("UIstory board destination - \(segue.destination)")
+//        guard let scoreViewContoller = segue.destination as? ScoreViewController else {return}
+//        guard let webPageViewController = segue.destination as? WebPageViewController else {return}
+        if segue.identifier == "segueScore" {
+            var scoreText: String = "n/a"
+            if let rounds = gameRound?.roundsCount {
+               scoreText = "\(self.guessedCorrectly)/\(rounds)"
+            }
+            if let scoreViewController = segue.destination as? ScoreViewController {
+                scoreViewController.scoreLabelValue = scoreText
+            }
         }
-               
-        scoreViewContoller.scoreLabelValue = scoreText
+        if segue.identifier == "eventFactSegue" {
+            if let webPageViewController = segue.destination as? WebPageViewController {
+                let title = sender as? String
+                print("sender title tapped - \(String(describing: title))")
+                self.controller = webPageViewController
+                // https://www.theartstory.org/movements/
+                let pageUrl: String = "https://www.theartstory.org/movements/"
+                webPageViewController.eventFactUrl = pageUrl
+            }
+        }
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         gameRound?.finishGameRound(timerLabel: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
     }
     
-    @IBAction func moveCard(_ sender: UIButton) {
-        print("Button tag - \(sender.tag)")
-        switch sender.tag {
+    @IBAction func showFact(_ sender: UIGestureRecognizer) {
+        guard let cardView = sender.view else {return}
+        
+        switch cardView.tag {
         case 1:
-            if let factIn = self.gameRound?.cardsSetting[.cardoTwo], let factOut = self.gameRound?.cardsSetting[.cardoOne] {
-                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoOne)
-                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoTwo)
-                
-                let factInText = factIn.title
-                let factOutText = factOut.title
-                
-                updateCardlabelText(forCardView: viewCardOne, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factOutText)
-                
-            }
-            
-        case 2:
-            if let factIn = self.gameRound?.cardsSetting[.cardoOne], let factOut = self.gameRound?.cardsSetting[.cardoTwo] {
-                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoTwo)
-                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoOne)
-                
-                let factInText = factIn.title
-                let factOutText = factOut.title
-                
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardOne, labelText: factOutText)
-            }
-            
-        case 3:
-            if let factIn = self.gameRound?.cardsSetting[.cardoThree], let factOut = self.gameRound?.cardsSetting[.cardoTwo] {
-                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoTwo)
-                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoThree)
-                
-                let factInText = factIn.title
-                let factOutText = factOut.title
-                
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardThree, labelText: factOutText)
-            }
-            
-        case 4:
-            if let factIn = self.gameRound?.cardsSetting[.cardoTwo], let factOut = self.gameRound?.cardsSetting[.cardoThree] {
-                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoThree)
-                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoTwo)
-                
-                let factInText = factIn.title
-                let factOutText = factOut.title
-                
-                updateCardlabelText(forCardView: viewCardThree, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factOutText)
-            }
-            
-        
-        case 5:
-            if let factIn = self.gameRound?.cardsSetting[.cardoFour], let factOut = self.gameRound?.cardsSetting[.cardoThree] {
-                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoThree)
-                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoFour)
-                
-                let factInText = factIn.title
-                let factOutText = factOut.title
-                
-                updateCardlabelText(forCardView: viewCardThree, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardFour, labelText: factOutText)
-            }
-            
-        case 6:
-            if let factIn = self.gameRound?.cardsSetting[.cardoThree], let factOut = self.gameRound?.cardsSetting[.cardoFour] {
-                gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoFour)
-                gameRound?.updateCardSettings(cardEvent: factOut, gameCard: .cardoThree)
-                
-                let factInText = factIn.title
-                let factOutText = factOut.title
-                
-                updateCardlabelText(forCardView: viewCardFour, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardThree, labelText: factOutText)
-            }
-            
-        default:
-            print("Something went wrong")
-        }
-        
-        if let setting = self.gameRound?.cardsSetting {
-            for (key, value) in setting {
-                print("key == \(key) \n")
-                print("value == \(value)")
-            }
+            // For the next task add each movements urls to HistoryFacts.plist
+            // find the way to disable user interaction when round is still being counting the seconds
+            // find how to restart on dismiss
+            // cardView.isUserInteractionEnabled = false
+            print("Card settings card one - \(String(describing: gameRound?.cardsSetting[.cardoOne]?.title))")
+            let senderTitle = gameRound?.cardsSetting[.cardoOne]?.title
+            performSegue(withIdentifier: "eventFactSegue", sender: senderTitle)
+        default: return
         }
     }
     
-    
-    @IBAction func moveCardAction(_ sender: UITapGestureRecognizer) {
-        guard sender.view != nil else { return }
-        
-        print(sender.view!.tag)
-        
-        switch sender.view!.tag {
+    @IBAction func moveCard(_ sender: UIButton) {
+        print("Button tag - \(sender.tag)")
+        switch sender.tag {
         case 1:
             if let factIn = self.gameRound?.cardsSetting[.cardoTwo], let factOut = self.gameRound?.cardsSetting[.cardoOne] {
                 gameRound?.updateCardSettings(cardEvent: factIn, gameCard: .cardoOne)
@@ -338,6 +275,7 @@ class ViewController: UIViewController {
     
     @IBAction func startOver(_ sender: UIStoryboardSegue) {
         guard sender.source is ScoreViewController else { return }
+        guard sender.source is WebPageViewController else { return }
         self.roundsPlayed = 0
         self.guessedCorrectly = 0
         startGameRound()

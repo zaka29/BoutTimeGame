@@ -97,8 +97,6 @@ struct ArtMovement: HistoryIvent  {
     var year: Int
 }
 
-
-
 class PlistConverter {
     static func dictionary(fromFile name: String, ofType type: String) throws -> [String: AnyObject] {
         guard let path = Bundle.main.path(forResource: name, ofType: type) else {

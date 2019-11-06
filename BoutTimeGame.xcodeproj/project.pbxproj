@@ -17,6 +17,7 @@
 		9BBC57CA22D3DD8800F90895 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BBC57C822D3DD8800F90895 /* LaunchScreen.storyboard */; };
 		9BBC57D522D3DD8800F90895 /* BoutTimeGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC57D422D3DD8800F90895 /* BoutTimeGameTests.swift */; };
 		9BF7A8572369B83C00355D4E /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7A8562369B83C00355D4E /* RulesViewController.swift */; };
+		9BFA47AF2372CF54002593F6 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA47AE2372CF54002593F6 /* WebPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		9BBC57D422D3DD8800F90895 /* BoutTimeGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoutTimeGameTests.swift; sourceTree = "<group>"; };
 		9BBC57D622D3DD8800F90895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BF7A8562369B83C00355D4E /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		9BFA47AE2372CF54002593F6 /* WebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				9BBC57C122D3DD8600F90895 /* ViewController.swift */,
 				9B7347752360A2AE0065ECBB /* ScoreViewController.swift */,
 				9BF7A8562369B83C00355D4E /* RulesViewController.swift */,
+				9BFA47AE2372CF54002593F6 /* WebPageViewController.swift */,
 				9BBC57C322D3DD8600F90895 /* Main.storyboard */,
 				9BBC57C822D3DD8800F90895 /* LaunchScreen.storyboard */,
 				9BBC57CB22D3DD8800F90895 /* Info.plist */,
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BFA47AF2372CF54002593F6 /* WebPageViewController.swift in Sources */,
 				9BF7A8572369B83C00355D4E /* RulesViewController.swift in Sources */,
 				9BBC57C222D3DD8600F90895 /* ViewController.swift in Sources */,
 				9BBC57C022D3DD8600F90895 /* AppDelegate.swift in Sources */,
