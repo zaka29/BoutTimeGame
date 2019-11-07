@@ -14,6 +14,7 @@ protocol HistoryIvent {
     var description: String {get}
     var eventDate: String {get}
     var year: Int {get}
+    var factUrl: String {get}
 }
 
 protocol GameRound {
@@ -24,7 +25,7 @@ protocol GameRound {
     var roundsCount: Int {get set}
     var gameTimer: Timer? {get set}
     
-    func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView)
+    func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView, timerCallBack callback: @escaping () -> Void)
     func checkOreder(correctEventsOrder eventsOrder: [HistoryIvent], currentSetting cardSetting: [GameRoundCards: HistoryIvent]) -> Bool
     func updateCardSettings(cardEvent event: HistoryIvent, gameCard card: GameRoundCards)
     func stopGametimer()
@@ -95,6 +96,7 @@ struct ArtMovement: HistoryIvent  {
     var description: String
     var eventDate: String
     var year: Int
+    var factUrl: String
 }
 
 class PlistConverter {
@@ -124,10 +126,10 @@ class BoutGameCardsAdaptor {
             var cards: [HistoryIvent] = []
             
             for eventItem in dictionary {
-                if let item = eventItem.value as? [String: Any], let itemDescription = item["description"] as? String, let itemDate = item["eventDate"] as? Date, let itemName = item["eventName"] as? String, let itemYear = item["year"] as? Int {
+                if let item = eventItem.value as? [String: Any], let itemDescription = item["description"] as? String, let itemDate = item["eventDate"] as? Date, let itemName = item["eventName"] as? String, let itemYear = item["year"] as? Int, let itemUrl = item["factUrl"] as? String {
                     let eventDateString = formatter.string(from: itemDate)
                     
-                    let movementItem = ArtMovement(title: itemName, description: itemDescription, eventDate: eventDateString, year: itemYear)
+                    let movementItem = ArtMovement(title: itemName, description: itemDescription, eventDate: eventDateString, year: itemYear, factUrl: itemUrl)
             
                     cards.append(movementItem)
                 } else {
@@ -229,7 +231,7 @@ class BoutTimeGameRound: GameRound {
         return facts.sorted(by: {$0.year > $1.year})
     }
     
-    func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView) {
+    func startGameTimer(label: UILabel, nextRoundSucces viewSuccess: UIImageView, nextRoundFail viewFail: UIImageView, timerCallBack callBack: @escaping () -> Void) {
         guard gameTimer == nil else { return }
         
         var secondsCount: Int = 60
@@ -259,6 +261,8 @@ class BoutTimeGameRound: GameRound {
                 timer.invalidate()
                 label.text = ""
                 label.isHidden = true
+                // hit a callback like a charm
+                callBack()
                 if self.checkOreder(correctEventsOrder: self.cardsCorrectOrder, currentSetting: self.cardsSetting) {
                     print("all correct.. 👏🏻")
                     self.roundVictory = true

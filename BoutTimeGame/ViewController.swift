@@ -15,9 +15,7 @@ class ViewController: UIViewController {
     var gameRound: BoutTimeGameRound?
     var roundsPlayed: Int = 0
     var guessedCorrectly: Int = 0
-    var controller: WebPageViewController?
-    
-    
+
     @IBOutlet weak var viewCardOne: UIView!
     @IBOutlet weak var viewCardTwo: UIView!
     @IBOutlet weak var viewCardThree: UIView!
@@ -35,9 +33,7 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("UIstory board destination - \(segue.destination)")
-//        guard let scoreViewContoller = segue.destination as? ScoreViewController else {return}
-//        guard let webPageViewController = segue.destination as? WebPageViewController else {return}
+
         if segue.identifier == "segueScore" {
             var scoreText: String = "n/a"
             if let rounds = gameRound?.roundsCount {
@@ -47,34 +43,44 @@ class ViewController: UIViewController {
                 scoreViewController.scoreLabelValue = scoreText
             }
         }
+        
         if segue.identifier == "eventFactSegue" {
             if let webPageViewController = segue.destination as? WebPageViewController {
-                let title = sender as? String
-                print("sender title tapped - \(String(describing: title))")
-                self.controller = webPageViewController
-                // https://www.theartstory.org/movements/
-                let pageUrl: String = "https://www.theartstory.org/movements/"
-                webPageViewController.eventFactUrl = pageUrl
+                let factUrl = sender as? String
+                webPageViewController.eventFactUrl = factUrl
             }
         }
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         gameRound?.finishGameRound(timerLabel: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
+        
+        viewCardOne.isUserInteractionEnabled = true
+        viewCardTwo.isUserInteractionEnabled = true
+        viewCardThree.isUserInteractionEnabled = true
+        viewCardFour.isUserInteractionEnabled = true
     }
     
     @IBAction func showFact(_ sender: UIGestureRecognizer) {
+        // For the next task add each movements urls to HistoryFacts.plist
+        // find the way to disable user interaction when round is still being counting the seconds
+        // find how to restart on dismiss
+        // cardView.isUserInteractionEnabled = false
         guard let cardView = sender.view else {return}
         
         switch cardView.tag {
         case 1:
-            // For the next task add each movements urls to HistoryFacts.plist
-            // find the way to disable user interaction when round is still being counting the seconds
-            // find how to restart on dismiss
-            // cardView.isUserInteractionEnabled = false
-            print("Card settings card one - \(String(describing: gameRound?.cardsSetting[.cardoOne]?.title))")
-            let senderTitle = gameRound?.cardsSetting[.cardoOne]?.title
-            performSegue(withIdentifier: "eventFactSegue", sender: senderTitle)
+            let factUrl = gameRound?.cardsSetting[.cardoOne]?.factUrl
+            performSegue(withIdentifier: "eventFactSegue", sender: factUrl)
+        case 2:
+            let factUrl = gameRound?.cardsSetting[.cardoTwo]?.factUrl
+            performSegue(withIdentifier: "eventFactSegue", sender: factUrl)
+        case 3:
+            let factUrl = gameRound?.cardsSetting[.cardoThree]?.factUrl
+            performSegue(withIdentifier: "eventFactSegue", sender: factUrl)
+        case 4:
+            let factUrl = gameRound?.cardsSetting[.cardoFour]?.factUrl
+            performSegue(withIdentifier: "eventFactSegue", sender: factUrl)
         default: return
         }
     }
@@ -170,12 +176,20 @@ class ViewController: UIViewController {
     
     func startGameRound() {
         gameRound?.stopGametimer()
+        underButtonTextlabel.text = "Shake to complete"
         imageViewNextRoundSuccess.isHidden = true
         imageViewNextRoundFail.isHidden = true
+        
         viewCardOne.layer.cornerRadius = 3
         viewCardTwo.layer.cornerRadius = 3
         viewCardThree.layer.cornerRadius = 3
         viewCardFour.layer.cornerRadius = 3
+        
+        viewCardOne.isUserInteractionEnabled = false
+        viewCardTwo.isUserInteractionEnabled = false
+        viewCardThree.isUserInteractionEnabled = false
+        viewCardFour.isUserInteractionEnabled = false
+        
         self.roundsPlayed += 1
         
         do {
@@ -188,7 +202,7 @@ class ViewController: UIViewController {
         if let facts = historicalFacts {
             self.gameRound = BoutTimeGameRound(cardFacts: facts, howManyRounds: 6)
             // Pass the next round buttons views here
-            self.gameRound?.startGameTimer(label: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
+            self.gameRound?.startGameTimer(label: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail, timerCallBack: timerCallBack)
         }
     }
     
@@ -244,6 +258,14 @@ class ViewController: UIViewController {
         updateCardlabelText(forCardView: viewCardTwo, labelText: "")
         updateCardlabelText(forCardView: viewCardThree, labelText: "")
         updateCardlabelText(forCardView: viewCardFour, labelText: "")
+    }
+    
+    func timerCallBack() {
+        underButtonTextlabel.text = "Tap events to learn more"
+        viewCardOne.isUserInteractionEnabled = true
+        viewCardTwo.isUserInteractionEnabled = true
+        viewCardThree.isUserInteractionEnabled = true
+        viewCardFour.isUserInteractionEnabled = true
     }
   
     @IBAction func nextRound(_ sender: UITapGestureRecognizer) {

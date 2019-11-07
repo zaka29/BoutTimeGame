@@ -19,7 +19,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="dVk-IR-5iR">
                                 <rect key="frame" x="10" y="0.0" width="394" height="626"/>
                                 <subviews>
-                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmM-Wo-qjS">
+                                    <view userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmM-Wo-qjS">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="148.33333333333334"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6Y-D8-28j">
@@ -45,7 +45,7 @@
                                             <outletCollection property="gestureRecognizers" destination="XpV-kF-ndm" appends="YES" id="hBC-GD-t9Z"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfe-1U-hdk">
+                                    <view userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfe-1U-hdk">
                                         <rect key="frame" x="0.0" y="159.33333333333331" width="394" height="148.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oFj-oG-C5c">
@@ -74,13 +74,17 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="oFj-oG-C5c" firstAttribute="top" secondItem="wfe-1U-hdk" secondAttribute="top" id="AVD-32-MFb"/>
                                             <constraint firstAttribute="trailing" secondItem="oFj-oG-C5c" secondAttribute="trailing" id="LXL-Ls-Atw"/>
                                             <constraint firstAttribute="bottom" secondItem="oFj-oG-C5c" secondAttribute="bottom" id="MBw-zI-jbK"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="ozX-wl-aGP" appends="YES" id="xe1-gg-LFY"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQG-yH-fnj">
+                                    <view userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQG-yH-fnj">
                                         <rect key="frame" x="0.0" y="318.66666666666669" width="394" height="148"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kSS-Ah-Ryf">
@@ -109,13 +113,17 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="kSS-Ah-Ryf" secondAttribute="trailing" id="Lhj-x9-MXb"/>
                                             <constraint firstAttribute="bottom" secondItem="kSS-Ah-Ryf" secondAttribute="bottom" id="NQE-2b-mHn"/>
                                             <constraint firstItem="kSS-Ah-Ryf" firstAttribute="top" secondItem="JQG-yH-fnj" secondAttribute="top" id="xhr-A2-8vD"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="xw3-xj-xXv" appends="YES" id="bWv-KI-ejf"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sez-kB-Q9s">
+                                    <view userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sez-kB-Q9s">
                                         <rect key="frame" x="0.0" y="477.66666666666669" width="394" height="148.33333333333331"/>
                                         <subviews>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZi-Ld-6ds">
@@ -132,11 +140,15 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="rZi-Ld-6ds" secondAttribute="trailing" id="2E6-gf-kmJ"/>
                                             <constraint firstItem="rZi-Ld-6ds" firstAttribute="top" secondItem="Sez-kB-Q9s" secondAttribute="top" id="N1b-J6-Cjo"/>
                                             <constraint firstAttribute="bottom" secondItem="rZi-Ld-6ds" secondAttribute="bottom" id="Wdc-lw-tMz"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="NOa-qH-MQE" appends="YES" id="hp4-fV-xqN"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -252,9 +264,24 @@
                         <action selector="nextRound:" destination="BYZ-38-t0r" id="NcB-I9-XZn"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="XpV-kF-ndm" userLabel="eventFact">
+                <tapGestureRecognizer id="XpV-kF-ndm" userLabel="eventFactCardOne">
                     <connections>
                         <action selector="showFact:" destination="BYZ-38-t0r" id="ABV-T9-xQq"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="ozX-wl-aGP" userLabel="eventFactCardTwo">
+                    <connections>
+                        <action selector="showFact:" destination="BYZ-38-t0r" id="pSa-5H-fqB"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="xw3-xj-xXv" userLabel="eventFactCardThree">
+                    <connections>
+                        <action selector="showFact:" destination="BYZ-38-t0r" id="Hea-eq-5Wc"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="NOa-qH-MQE" userLabel="eventFactCardFour">
+                    <connections>
+                        <action selector="showFact:" destination="BYZ-38-t0r" id="cCZ-Tg-yIx"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -359,7 +386,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Acf-2X-oKG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="app-CD-MpN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="82.608695652173921" y="1254.6195652173915"/>
+            <point key="canvasLocation" x="83" y="1297"/>
         </scene>
         <!--Rules View Controller-->
         <scene sceneID="Dbq-EI-Rxg">
