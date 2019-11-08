@@ -25,7 +25,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageViewNextRoundSuccess: UIImageView!
     @IBOutlet weak var imageViewNextRoundFail: UIImageView!
     @IBOutlet weak var underButtonTextlabel: UILabel!
-    
+    @IBOutlet weak var cardOneLabel: UILabel!
+    @IBOutlet weak var cardTwoLabel: UILabel!
+    @IBOutlet weak var cardThreeLabel: UILabel!
+    @IBOutlet weak var cardFourLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         startGameRound()
@@ -55,10 +58,11 @@ class ViewController: UIViewController {
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         gameRound?.finishGameRound(timerLabel: timerLabel, nextRoundSucces: imageViewNextRoundSuccess, nextRoundFail: imageViewNextRoundFail)
         
-        viewCardOne.isUserInteractionEnabled = true
-        viewCardTwo.isUserInteractionEnabled = true
-        viewCardThree.isUserInteractionEnabled = true
-        viewCardFour.isUserInteractionEnabled = true
+        underButtonTextlabel.text = "Tap events to learn more"
+        cardOneLabel.isUserInteractionEnabled = true
+        cardTwoLabel.isUserInteractionEnabled = true
+        cardThreeLabel.isUserInteractionEnabled = true
+        cardFourLabel.isUserInteractionEnabled = true
     }
     
     @IBAction func showFact(_ sender: UIGestureRecognizer) {
@@ -96,9 +100,8 @@ class ViewController: UIViewController {
                 let factInText = factIn.title
                 let factOutText = factOut.title
                 
-                updateCardlabelText(forCardView: viewCardOne, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factOutText)
-                
+                cardOneLabel.text = factInText
+                cardTwoLabel.text = factOutText
             }
             
         case 2:
@@ -109,8 +112,8 @@ class ViewController: UIViewController {
                 let factInText = factIn.title
                 let factOutText = factOut.title
                 
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardOne, labelText: factOutText)
+                cardTwoLabel.text = factInText
+                cardOneLabel.text = factOutText
             }
             
         case 3:
@@ -121,8 +124,8 @@ class ViewController: UIViewController {
                 let factInText = factIn.title
                 let factOutText = factOut.title
                 
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardThree, labelText: factOutText)
+                cardTwoLabel.text = factInText
+                cardThreeLabel.text = factOutText
             }
             
         case 4:
@@ -133,8 +136,8 @@ class ViewController: UIViewController {
                 let factInText = factIn.title
                 let factOutText = factOut.title
                 
-                updateCardlabelText(forCardView: viewCardThree, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardTwo, labelText: factOutText)
+                cardThreeLabel.text = factInText
+                cardTwoLabel.text = factOutText
             }
             
         
@@ -146,8 +149,8 @@ class ViewController: UIViewController {
                 let factInText = factIn.title
                 let factOutText = factOut.title
                 
-                updateCardlabelText(forCardView: viewCardThree, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardFour, labelText: factOutText)
+                cardThreeLabel.text = factInText
+                cardFourLabel.text = factOutText
             }
             
         case 6:
@@ -158,8 +161,8 @@ class ViewController: UIViewController {
                 let factInText = factIn.title
                 let factOutText = factOut.title
                 
-                updateCardlabelText(forCardView: viewCardFour, labelText: factInText)
-                updateCardlabelText(forCardView: viewCardThree, labelText: factOutText)
+                cardFourLabel.text = factInText
+                cardThreeLabel.text = factOutText
             }
             
         default:
@@ -185,10 +188,10 @@ class ViewController: UIViewController {
         viewCardThree.layer.cornerRadius = 3
         viewCardFour.layer.cornerRadius = 3
         
-        viewCardOne.isUserInteractionEnabled = false
-        viewCardTwo.isUserInteractionEnabled = false
-        viewCardThree.isUserInteractionEnabled = false
-        viewCardFour.isUserInteractionEnabled = false
+        cardOneLabel.isUserInteractionEnabled = false
+        cardTwoLabel.isUserInteractionEnabled = false
+        cardThreeLabel.isUserInteractionEnabled = false
+        cardFourLabel.isUserInteractionEnabled = false
         
         self.roundsPlayed += 1
         
@@ -225,47 +228,37 @@ class ViewController: UIViewController {
             switch cardo {
             case .cardoOne:
                 let labelTtitle = self.gameRound?.cardsSetting[.cardoOne]?.title
-                let labelText = drawTextLabel(labeltext: labelTtitle)
-                viewCardOne.addSubview(labelText)
+                cardOneLabel.text = labelTtitle
                 
             case .cardoTwo:
                 let labelTtitle = self.gameRound?.cardsSetting[.cardoTwo]?.title
-                viewCardTwo.addSubview(drawTextLabel(labeltext: labelTtitle))
+                cardTwoLabel.text = labelTtitle
                 
             case .cardoThree:
                 let labelTtitle = self.gameRound?.cardsSetting[.cardoThree]?.title
-                viewCardThree.addSubview(drawTextLabel(labeltext: labelTtitle))
+                cardThreeLabel.text = labelTtitle
                 
             case .cardoFour:
                 let labelTtitle = self.gameRound?.cardsSetting[.cardoFour]?.title
-                viewCardFour.addSubview(drawTextLabel(labeltext: labelTtitle))
+                cardFourLabel.text = labelTtitle
             }
         }
         
-    }
-    
-    func updateCardlabelText(forCardView view: UIView, labelText text: String){
-        
-        for subview in view.subviews {
-            if let label = subview as? UILabel {
-                label.text = text
-            }
-        }
     }
     
     func cleanGameRoundCardLabelText() {
-        updateCardlabelText(forCardView: viewCardOne, labelText: "")
-        updateCardlabelText(forCardView: viewCardTwo, labelText: "")
-        updateCardlabelText(forCardView: viewCardThree, labelText: "")
-        updateCardlabelText(forCardView: viewCardFour, labelText: "")
+        cardOneLabel.text = ""
+        cardTwoLabel.text = ""
+        cardThreeLabel.text = ""
+        cardFourLabel.text = ""
     }
     
     func timerCallBack() {
         underButtonTextlabel.text = "Tap events to learn more"
-        viewCardOne.isUserInteractionEnabled = true
-        viewCardTwo.isUserInteractionEnabled = true
-        viewCardThree.isUserInteractionEnabled = true
-        viewCardFour.isUserInteractionEnabled = true
+        cardOneLabel.isUserInteractionEnabled = true
+        cardTwoLabel.isUserInteractionEnabled = true
+        cardThreeLabel.isUserInteractionEnabled = true
+        cardFourLabel.isUserInteractionEnabled = true
     }
   
     @IBAction func nextRound(_ sender: UITapGestureRecognizer) {

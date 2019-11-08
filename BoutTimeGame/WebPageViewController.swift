@@ -21,10 +21,8 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("WebView controller here - \(String(describing: eventFactUrl))")
         let url = URL(string: eventFactUrl)!
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
-        // Do any additional setup after loading the view.
     }
 }

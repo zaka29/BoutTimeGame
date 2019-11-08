@@ -19,7 +19,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="dVk-IR-5iR">
                                 <rect key="frame" x="10" y="0.0" width="394" height="626"/>
                                 <subviews>
-                                    <view userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmM-Wo-qjS">
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmM-Wo-qjS">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="148.33333333333334"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6Y-D8-28j">
@@ -33,19 +33,28 @@
                                                     <action selector="moveCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HOO-Jl-33q"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolores" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McI-kl-Awb">
+                                                <rect key="frame" x="20" y="59.666666666666664" width="311" height="28.666666666666664"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                                <color key="textColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="XpV-kF-ndm" appends="YES" id="24E-n0-opX"/>
+                                                </connections>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstItem="McI-kl-Awb" firstAttribute="centerY" secondItem="bmM-Wo-qjS" secondAttribute="centerY" id="1G5-ah-K4V"/>
+                                            <constraint firstItem="McI-kl-Awb" firstAttribute="leading" secondItem="bmM-Wo-qjS" secondAttribute="leading" constant="20" id="1Vu-eg-gRt"/>
                                             <constraint firstAttribute="trailing" secondItem="B6Y-D8-28j" secondAttribute="trailing" id="3FP-8C-qcV"/>
+                                            <constraint firstItem="B6Y-D8-28j" firstAttribute="leading" secondItem="McI-kl-Awb" secondAttribute="trailing" constant="20" id="DWo-Ni-QH3"/>
                                             <constraint firstAttribute="bottom" secondItem="B6Y-D8-28j" secondAttribute="bottom" id="VgW-gG-ldG"/>
                                             <constraint firstItem="B6Y-D8-28j" firstAttribute="top" secondItem="bmM-Wo-qjS" secondAttribute="top" id="gHv-UA-Kyj"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="XpV-kF-ndm" appends="YES" id="hBC-GD-t9Z"/>
-                                        </connections>
                                     </view>
-                                    <view userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfe-1U-hdk">
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfe-1U-hdk">
                                         <rect key="frame" x="0.0" y="159.33333333333331" width="394" height="148.33333333333331"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oFj-oG-C5c">
@@ -72,19 +81,28 @@
                                                     <constraint firstAttribute="width" constant="43" id="Q6g-uQ-piF"/>
                                                 </constraints>
                                             </stackView>
+                                            <label opaque="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolores" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGk-7x-V0C">
+                                                <rect key="frame" x="20" y="59.66666666666665" width="311" height="28.666666666666664"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                                <color key="textColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="ozX-wl-aGP" appends="YES" id="IZq-S4-kau"/>
+                                                </connections>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstItem="xGk-7x-V0C" firstAttribute="leading" secondItem="wfe-1U-hdk" secondAttribute="leading" constant="20" id="2IS-dO-yXC"/>
                                             <constraint firstItem="oFj-oG-C5c" firstAttribute="top" secondItem="wfe-1U-hdk" secondAttribute="top" id="AVD-32-MFb"/>
                                             <constraint firstAttribute="trailing" secondItem="oFj-oG-C5c" secondAttribute="trailing" id="LXL-Ls-Atw"/>
                                             <constraint firstAttribute="bottom" secondItem="oFj-oG-C5c" secondAttribute="bottom" id="MBw-zI-jbK"/>
+                                            <constraint firstItem="xGk-7x-V0C" firstAttribute="centerY" secondItem="wfe-1U-hdk" secondAttribute="centerY" id="gI8-n8-vaJ"/>
+                                            <constraint firstItem="oFj-oG-C5c" firstAttribute="leading" secondItem="xGk-7x-V0C" secondAttribute="trailing" constant="20" id="wpC-gH-QTG"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="ozX-wl-aGP" appends="YES" id="xe1-gg-LFY"/>
-                                        </connections>
                                     </view>
-                                    <view userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQG-yH-fnj">
+                                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQG-yH-fnj">
                                         <rect key="frame" x="0.0" y="318.66666666666669" width="394" height="148"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kSS-Ah-Ryf">
@@ -111,19 +129,28 @@
                                                     <constraint firstAttribute="width" constant="43" id="Q88-hW-jhX"/>
                                                 </constraints>
                                             </stackView>
+                                            <label opaque="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolores" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3i6-Yh-cJe">
+                                                <rect key="frame" x="20" y="59.666666666666622" width="311" height="28.666666666666664"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                                <color key="textColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="xw3-xj-xXv" appends="YES" id="tou-h1-xF2"/>
+                                                </connections>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <constraints>
+                                            <constraint firstItem="kSS-Ah-Ryf" firstAttribute="leading" secondItem="3i6-Yh-cJe" secondAttribute="trailing" constant="20" id="3Nv-LW-W6Q"/>
                                             <constraint firstAttribute="trailing" secondItem="kSS-Ah-Ryf" secondAttribute="trailing" id="Lhj-x9-MXb"/>
                                             <constraint firstAttribute="bottom" secondItem="kSS-Ah-Ryf" secondAttribute="bottom" id="NQE-2b-mHn"/>
+                                            <constraint firstItem="3i6-Yh-cJe" firstAttribute="centerY" secondItem="JQG-yH-fnj" secondAttribute="centerY" id="jvo-qF-TCs"/>
+                                            <constraint firstItem="3i6-Yh-cJe" firstAttribute="leading" secondItem="JQG-yH-fnj" secondAttribute="leading" constant="20" id="wUA-rh-kKR"/>
                                             <constraint firstItem="kSS-Ah-Ryf" firstAttribute="top" secondItem="JQG-yH-fnj" secondAttribute="top" id="xhr-A2-8vD"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="xw3-xj-xXv" appends="YES" id="bWv-KI-ejf"/>
-                                        </connections>
                                     </view>
-                                    <view userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sez-kB-Q9s">
+                                    <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sez-kB-Q9s">
                                         <rect key="frame" x="0.0" y="477.66666666666669" width="394" height="148.33333333333331"/>
                                         <subviews>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZi-Ld-6ds">
@@ -138,17 +165,26 @@
                                                     <action selector="moveCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fv1-nC-7ya"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolores" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJh-rh-GSA">
+                                                <rect key="frame" x="20" y="59.999999999999936" width="311" height="28.666666666666664"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                                <color key="textColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="NOa-qH-MQE" appends="YES" id="U0E-sA-3oa"/>
+                                                </connections>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="rZi-Ld-6ds" secondAttribute="trailing" id="2E6-gf-kmJ"/>
+                                            <constraint firstItem="fJh-rh-GSA" firstAttribute="leading" secondItem="Sez-kB-Q9s" secondAttribute="leading" constant="20" id="4UA-mw-JM8"/>
+                                            <constraint firstItem="fJh-rh-GSA" firstAttribute="centerY" secondItem="Sez-kB-Q9s" secondAttribute="centerY" id="FoI-Le-aet"/>
                                             <constraint firstItem="rZi-Ld-6ds" firstAttribute="top" secondItem="Sez-kB-Q9s" secondAttribute="top" id="N1b-J6-Cjo"/>
+                                            <constraint firstItem="rZi-Ld-6ds" firstAttribute="leading" secondItem="fJh-rh-GSA" secondAttribute="trailing" constant="20" id="PZb-Xr-GIq"/>
                                             <constraint firstAttribute="bottom" secondItem="rZi-Ld-6ds" secondAttribute="bottom" id="Wdc-lw-tMz"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="NOa-qH-MQE" appends="YES" id="hp4-fV-xqN"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -240,6 +276,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="cardFourLabel" destination="fJh-rh-GSA" id="6Dv-Yk-O8K"/>
+                        <outlet property="cardOneLabel" destination="McI-kl-Awb" id="ju0-5S-1S3"/>
+                        <outlet property="cardThreeLabel" destination="3i6-Yh-cJe" id="PlU-dU-0g4"/>
+                        <outlet property="cardTwoLabel" destination="xGk-7x-V0C" id="Hze-fL-mWy"/>
                         <outlet property="imageViewNextRoundFail" destination="Kdf-Rf-hqF" id="VU6-f1-6oA"/>
                         <outlet property="imageViewNextRoundSuccess" destination="COq-w1-ZGX" id="gJ4-Qc-91a"/>
                         <outlet property="timerLabel" destination="TCV-pD-g2i" id="QYE-HZ-s1R"/>
@@ -285,7 +325,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="83" y="484"/>
+            <point key="canvasLocation" x="82.608695652173921" y="483.42391304347831"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="aA0-wS-geh">
